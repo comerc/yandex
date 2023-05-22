@@ -20,9 +20,9 @@
 
 Все эти типы данных являются ссылочными в GoLang и передаются по ссылке, а не по значению.
 
-## Решения для задачек
+## /article - алгоритмические задачи
 
-https://habr.com/ru/companies/yandex/articles/449890/
+[](https://habr.com/ru/companies/yandex/articles/449890/)
 
 ### Задача A. Камни и украшения
 
@@ -74,7 +74,7 @@ https://habr.com/ru/companies/yandex/articles/449890/
 
 В этой задаче многие испытывают сложности с форматом ввода. Обратите внимание на то, что первые элементы строк не описывают элементы массивов, они описывают длины массивов!
 
-Answer1:
+#### Answer #1:
 
 > В данном коде мы создаем структуру Item, которая содержит значение элемента, номер массива, из которого был взят элемент, и индекс элемента в массиве. Затем мы создаем приоритетную очередь PriorityQueue на основе этой структуры, которая будет использоваться для извлечения минимального элемента.
 >
@@ -82,7 +82,7 @@ Answer1:
 >
 > В итоге мы получаем отсортированный в порядке неубывания массив, содержащий все элементы исходных k массивов. В примере выше мы передаем в функцию mergeArrays три отсортированных массива и получаем отсортированный массив [0 0 3 5 6 6 7 28].
 
-Answer2:
+#### Answer #2:
 
 > В этом коде мы используем те же самые структуры данных и алгоритм, что и в предыдущем примере, но более лаконично записываем код. Мы создаем массив pointers для хранения указателей на текущий элемент в каждом массиве, инициализируем его нулями и используем его для проверки достижения конца каждого массива.
 >
@@ -90,6 +90,76 @@ Answer2:
 >
 > В итоге мы получаем тот же отсортированный в порядке неубывания массив, содержащий все элементы исходных k массивов.
 
-Answer3:
+#### Answer #3:
 
 > Этот код считывает количество массивов k, затем считывает каждый массив и его элементы, сливает массивы в один отсортированный массив и выводит его элементы. Для слияния массивов используется куча, которая поддерживает извлечение минимума и добавление элементов. Код также содержит функции для построения кучи и поддержания ее свойств.
+
+## leetcode
+
+### linked lists:
+
+[23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+[141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
+[2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
+[206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
+
+### binary search:
+
+[704. Binary Search](https://leetcode.com/problems/binary-search/)
+[374. Guess Number Higher or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/)
+[74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
+[33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+[153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+[81. Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
+
+### hash table:
+
+[136. Single Number](https://leetcode.com/problems/single-number/) - решить за O(1) по памяти
+[1. Two Sum](https://leetcode.com/problems/two-sum/)
+[18. 4Sum](https://leetcode.com/problems/4sum/)
+[49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+[242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)
+[438. Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
+
+### queue/stack:
+
+[20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
+
+### dfs/bfs:
+
+[200. Number of Islands](https://leetcode.com/problems/number-of-islands/)
+[301. Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/)
+
+### sort:
+
+[56. Merge Intervals](https://leetcode.com/problems/merge-intervals/)
+
+### heap/hash:
+
+[692. Top K Frequent Words](https://leetcode.com/problems/top-k-frequent-words/)
+[347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
+
+### two pointers:
+
+[11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+[763. Partition Labels](https://leetcode.com/problems/partition-labels/)
+
+### sliding window:
+
+[480. Sliding Window Median](https://leetcode.com/problems/sliding-window-median/)
+[239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+[424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
+
+### tree:
+
+[100. Same Tree](https://leetcode.com/problems/same-tree/)
+[101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
+[110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)
+[113. Path Sum II](https://leetcode.com/problems/path-sum-ii/)
+
+### greedy problems:
+
+[121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+[122. Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
+[714. Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
+[309. Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
