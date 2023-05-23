@@ -53,6 +53,8 @@ func getArray(a []int) []int {
 }
 ```
 
+- [Что нужно знать о слайсах в Go](https://www.youtube.com/watch?v=1vAIvqDo5LE)
+
 ## [/article](./article/) - алгоритмические задачи
 
 - [Как проходят алгоритмические секции на собеседованиях в Яндекс](https://habr.com/ru/companies/yandex/articles/449890/)
