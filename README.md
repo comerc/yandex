@@ -163,6 +163,8 @@ O(log n) - это алгоритмическая сложность, котор�
 
 ## [/leetcode](./leetcode/)
 
+- [LEETCODE PATTERNS](https://seanprashad.com/leetcode-patterns/)
+
 ### linked lists:
 
 - [23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
