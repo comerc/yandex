@@ -53,6 +53,48 @@ func getArray(a []int) []int {
 
 - [Что нужно знать о слайсах в Go](https://www.youtube.com/watch?v=1vAIvqDo5LE)
 
+## Heap
+
+Куча (heap) - это структура данных, которая упорядочивает элементы в виде двоичного дерева, при этом каждый узел имеет значение, которое не меньше (для кучи минимумов) или не больше (для кучи максимумов) значений его потомков. В GoLang куча представлена типом `heap.Interface`, который описывает методы, необходимые для работы с кучей:
+
+```go
+// heap.go
+type Interface interface {
+	sort.Interface
+	Push(x any) // add x as element Len()
+	Pop() any   // remove and return element Len() - 1.
+}
+// sort.go
+type Interface interface {
+	// Len is the number of elements in the collection.
+	Len() int
+
+	// Less reports whether the element with index i
+	// must sort before the element with index j.
+	//
+	// If both Less(i, j) and Less(j, i) are false,
+	// then the elements at index i and j are considered equal.
+	// Sort may place equal elements in any order in the final result,
+	// while Stable preserves the original input order of equal elements.
+	//
+	// Less must describe a transitive ordering:
+	//  - if both Less(i, j) and Less(j, k) are true, then Less(i, k) must be true as well.
+	//  - if both Less(i, j) and Less(j, k) are false, then Less(i, k) must be false as well.
+	//
+	// Note that floating-point comparison (the < operator on float32 or float64 values)
+	// is not a transitive ordering when not-a-number (NaN) values are involved.
+	// See Float64Slice.Less for a correct implementation for floating-point values.
+	Less(i, j int) bool
+
+	// Swap swaps the elements with indexes i and j.
+	Swap(i, j int)
+}
+```
+
+![](./assets/heap.png)
+
+На картинке показано справа, как выглядит куча минимумов, где каждый узел имеет значение, которое не меньше значений его потомков. В куче минимумов наименьший элемент всегда находится в корне дерева, что делает его полезным для решения ряда задач, таких как нахождение k наименьших элементов в списке или поиск медианы в потоке данных. Для работы с кучей можно использовать пакет `container/heap`, который предоставляет реализацию кучи минимумов и максимумов, а также методы для работы с ней, такие как `Push()`, `Pop()`, `Fix()`, `Remove()`, и другие.
+
 ## DFS/BFS
 
 DFS (Depth-First Search) и BFS (Breadth-First Search) - это два алгоритма поиска в графе. DFS ищет в глубину, переходя на каждый уровень графа, пока не будет найден целевой узел или не будут исследованы все узлы. BFS ищет в ширину, посещая все узлы на одном уровне перед переходом к узлам следующего уровня. Оба алгоритма могут быть использованы для поиска кратчайшего пути в невзвешенном графе, но только BFS может быть использован для этой цели во взвешенном графе.
