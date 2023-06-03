@@ -178,6 +178,8 @@ O(n \* log(n)) означает, что время выполнения алго
 
 Или ещё [Основы алгоритмов - интерактив от Yandex](https://academy.yandex.ru/handbook/algorithms)
 
+Из YouTube: [ВСЯ СЛОЖНОСТЬ АЛГОРИТМОВ ЗА 11 МИНУТ](https://www.youtube.com/watch?v=cXCuXNwzdfY)
+
 ## [/article](./article/) - алгоритмические задачи
 
 - [Как проходят алгоритмические секции на собеседованиях в Яндекс](https://habr.com/ru/companies/yandex/articles/449890/)
