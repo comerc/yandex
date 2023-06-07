@@ -66,7 +66,117 @@ func getArray(a []int) []int {
 
 Общий формат среза: a[начало:конец:шаг]. Если начало не указано, то по умолчанию начало считается 0. Если конец не указан, то по умолчанию конец считается длиной массива. Если шаг не указан, то по умолчанию шаг считается равным 1.
 
+Эмпирически установлено. Если отрезать слайс сначала, то capacity уменьшается до новой длины, а если с конца, то остаётся равен исходному размеру слайса. Третий параметр позволяет указать capacity явно (но не больше исходного), и он тоже уменьшается от указанного, если отрезать слайс сначала.
+
+Если append() добавляет новый элемент в слайс, у которого превышена capacity, то capacity увеличивается в два раза от исходного. Но если добавлять за раз несколько элементов (больше чем в два раза от исходного), то дальше capacity увеличивается с шагом два.
+
 - [Что нужно знать о слайсах в Go](https://www.youtube.com/watch?v=1vAIvqDo5LE)
+
+<details>
+	<summary>Больше практики</summary>
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+// что будет выведено?
+// если где-то будет паника, то в какой сторке и почему?
+
+func example1Slice() {
+	var slice []int
+	fmt.Printf("slice is nil %t\n", slice == nil) // true (!)
+	slice2 := []int{}
+	fmt.Printf("slice2 is nil %t\n", slice2 == nil) // false
+	// append() увеличивает емкость среза в два раза:
+	slice = append(slice, 1)
+	fmt.Printf("slise = %+v len = %d; cap = %d;\n", slice, len(slice), cap(slice))
+	// slise = [1] len = 1 cap = 1
+	slice = append(slice, 2)
+	fmt.Printf("slice = %+v len = %d; cap = %d;\n", slice, len(slice), cap(slice))
+	// slise = [1, 2] len = 2 cap = 2
+	slice = append(slice, 3)
+	fmt.Printf("slice = %+v len = %d; cap = %d;\n", slice, len(slice), cap(slice))
+	// slise = [1, 2, 3] len = 3 cap = 4 (!)
+}
+
+func example2Slice() {
+	sl := []int{1, 2, 3, 4, 5, 6}
+	sl1 := sl[:3]
+	sl2 := sl[1:3:4]
+
+	fmt.Printf("sl1 = %+v len = %d; cap = %d;\n", sl1, len(sl1), cap(sl1))
+	// sl1 = [1, 2, 3] len = 3 cap = 6
+	fmt.Printf("sl2 = %+v len = %d; cap = %d;\n", sl2, len(sl2), cap(sl2))
+	// sl2 = [2, 3] len = 2 cap = 3
+
+	sl2 = append(sl2, 9)
+	sl1 = sl1[:4]
+
+	fmt.Printf("sl = %+v len = %d; cap = %d;\n", sl, len(sl), cap(sl))
+	// sl = [1, 2, 3, 9, 5, 6] len = 6 cap = 6
+	fmt.Printf("sl1 = %+v len = %d; cap = %d;\n", sl1, len(sl1), cap(sl1))
+	// sl1 = [1, 2, 3, 9] len = 4 cap = 6
+	fmt.Printf("sl2 = %+v len = %d; cap = %d;\n", sl2, len(sl2), cap(sl2))
+	// sl2 = [2, 3, 9] len = 3 cap = 3
+
+	add(sl1, 8)
+	fmt.Printf("sl = %+v len = %d; cap = %d;\n", sl, len(sl), cap(sl))
+	// sl = [1, 2, 3, 9, 8, 6] len = 6 cap = 6
+	fmt.Printf("sl1 = %+v len = %d; cap = %d;\n", sl1, len(sl1), cap(sl1))
+	// sl1 = [1, 2, 3, 9] len = 4 cap = 6
+	fmt.Printf("sl2 = %+v len = %d; cap = %d;\n", sl2, len(sl2), cap(sl2))
+	// sl2 = [2, 3, 9] len = 3 cap = 3
+
+	changeSlice(sl, 5, 20)
+	fmt.Printf("sl = %+v len = %d; cap = %d;\n", sl, len(sl), cap(sl))
+	// sl = [1, 2, 3, 9, 8, 20] len = 6 cap = 6
+
+	sl = append(sl, 7)
+	fmt.Printf("sl = %+v len = %d; cap = %d;\n", sl, len(sl), cap(sl))
+	// sl = [1, 2, 3, 9, 8, 20, 7] len = 7 cap = 12
+
+	// sl1 = sl1[:7] - panic, cap = 6
+	// fmt.Printf("sl1 = %+v len = %d; cap = %d;\n", sl1, len(sl1), cap(sl1))
+	// sl1 = [1, 2, 3, 9] len = 4 cap = 6
+}
+
+func example3Map() {
+	var myMap map[int]int
+	fmt.Printf("myMap is nil %t len = %d;\n", myMap == nil, len(myMap)) // true, len = 0
+	// myMap[5] = 55 // panic
+	// fmt.Printf("myMap is nil %t len = %d;\n", myMap == nil, len(myMap))
+
+	myMap = map[int]int{}
+	fmt.Printf("myMap is nil %t len = %d;\n", myMap == nil, len(myMap)) // false, len = 0
+	changeMap(myMap, 6, 66)
+	fmt.Printf("myMap is nil %t len = %d;\n", myMap == nil, len(myMap)) // false, len = 1
+}
+
+func changeSlice(sl []int, idx int, val int) {
+	if 0 <= idx && idx < len(sl) {
+		sl[idx] = val
+	}
+}
+
+func changeMap(myMap map[int]int, key int, val int) {
+	myMap[key] = val
+}
+
+func add(sl []int, val int) {
+	sl = append(sl, val)
+}
+
+func main() {
+	// example1Slice()
+	// example2Slice()
+	example3Map()
+}
+```
+
+</details>
 
 ## Heap
 
