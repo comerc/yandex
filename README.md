@@ -70,7 +70,7 @@ func getArray(a []int) []int {
 
 Если append() добавляет новый элемент в слайс, у которого превышена capacity, то capacity увеличивается в два раза от исходного. Но если добавлять за раз несколько элементов (больше чем в два раза от исходного), то дальше capacity увеличивается с шагом два.
 
-- [Что нужно знать о слайсах в Go](https://www.youtube.com/watch?v=1vAIvqDo5LE)
+Видео: [Что нужно знать о слайсах в Go](https://www.youtube.com/watch?v=1vAIvqDo5LE)
 
 <details>
 	<summary>Больше практики</summary>
@@ -174,6 +174,7 @@ func main() {
 	// example2Slice()
 	example3Map()
 }
+
 ```
 
 </details>
