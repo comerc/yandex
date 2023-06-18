@@ -494,3 +494,4 @@ O(n \* log(n)) означает, что время выполнения алго
 
 - [coderun.yandex.ru](https://coderun.yandex.ru/)
 - [practicum.yandex.ru](https://practicum.yandex.ru/profile/algorithms-interview/)
+- [academy.yandex.ru](https://academy.yandex.ru/)
