@@ -508,6 +508,11 @@ O(n \* log(n)) означает, что время выполнения алго
 - [714. Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
 - [309. Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
 
+## Успеваемость
+
+![performance](/assets/performance.png)
+Итого 835 повторов задач, минимум по 20 раз каждую. 🤓 [тынц](https://docs.google.com/spreadsheets/d/1X45zJ7N6ZWw-byRFq0ITaYul07QDJLREMmfhOxsmsdA/edit?usp=sharing)
+
 ---
 
 - [coderun.yandex.ru](https://coderun.yandex.ru/)
