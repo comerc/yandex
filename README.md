@@ -4,6 +4,14 @@
 
 Это матерный язык в мире языков программирования, где простыми выразительными средствами можно сказать больше, чем на родном языке. Плюс gofmt снимает ограничения с выбором редактора.
 
+- [Дзен Go](https://habr.com/ru/companies/vk/articles/490340/)
+
+## Code Style
+
+- [What's in a name?](https://go.dev/talks/2014/names.slide)
+- [uber-go-guide-ru](https://github.com/sau00/uber-go-guide-ru/blob/master/style.md)
+- [Standard Go Project Layout](https://github.com/golang-standards/project-layout)
+
 ## ООП
 
 В GoLang не реализованы некоторые особенности объектно-ориентированного программирования, такие как наследование классов и конструкторы. Однако, Go предлагает другие механизмы для достижения тех же целей, например, встраивание структур и интерфейсы.
