@@ -11,6 +11,8 @@
 - [What's in a name?](https://go.dev/talks/2014/names.slide)
 - [uber-go-guide-ru](https://github.com/sau00/uber-go-guide-ru/blob/master/style.md)
 - [Standard Go Project Layout](https://github.com/golang-standards/project-layout)
+- [50 оттенков Go](https://habr.com/ru/companies/vk/articles/314804/)
+- [Паттерны проектирования](https://refactoring.guru/ru/design-patterns/go)
 
 ## ООП
 
