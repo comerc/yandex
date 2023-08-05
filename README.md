@@ -12,7 +12,14 @@
 - [uber-go-guide-ru](https://github.com/sau00/uber-go-guide-ru/blob/master/style.md)
 - [Standard Go Project Layout](https://github.com/golang-standards/project-layout)
 - [50 оттенков Go](https://habr.com/ru/companies/vk/articles/314804/)
-- [Паттерны проектирования](https://refactoring.guru/ru/design-patterns/go)
+- [Паттерны проектирования (с картинками)](https://refactoring.guru/ru/design-patterns/go)
+- [Паттерны проектирования (с тестами)](https://github.com/AlexanderGrom/go-patterns)
+
+## Practice
+
+- [go-in-practice](https://github.com/diptomondal007/GoLangBooks/blob/master/go-in-practice.pdf)
+- [building-microservices-go](https://github.com/diptomondal007/GoLangBooks/blob/master/building-microservices-go.pdf)
+- [go-design-patterns-real-world-projects](https://github.com/diptomondal007/GoLangBooks/blob/master/Go_Design_Patterns_for_Real_World_Projects/go-design-patterns-real-world-projects.pdf)
 
 ## ООП
 
