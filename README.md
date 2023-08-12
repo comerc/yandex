@@ -6,6 +6,8 @@
 
 - [Дзен Go](https://habr.com/ru/companies/vk/articles/490340/)
 - [Изучите X за Y минут Где X=Go](https://learnxinyminutes.com/docs/ru-ru/go-ru/)
+- [A Tour of Go](https://go.dev/tour/list)
+- [Golang | Все Основы за 4 Часа Для Начинающих](https://www.youtube.com/watch?v=h0zxh2TPN_I)
 
 ## Code Style
 
