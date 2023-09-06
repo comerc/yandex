@@ -22,6 +22,7 @@
 - [Паттерны проектирования (с картинками)](https://refactoring.guru/ru/design-patterns/go)
 - [Паттерны проектирования (с тестами)](https://github.com/AlexanderGrom/go-patterns)
 - [Go Clean Architecture](https://github.com/comerc/go-clean-architecture)
+- [Communicating sequential processes(CSP) for Go developer in a nutshell](https://levelup.gitconnected.com/communicating-sequential-processes-csp-for-go-developer-in-a-nutshell-866795eb879d)
 
 ## Channel Axioms
 
