@@ -13,7 +13,8 @@
 - [Курс по изучению Golang для начинающих](https://golangify.com/go/kurs-izucheniya-golang-dlya-nachinayuschih)
 - [golang-book.ru](http://golang-book.ru/)
 - [Шпаргалка для собеса по GoLang](https://habr.com/ru/articles/758662/)
-- [Практический Go — Основы](https://habr.com/ru/articles/759378/)
+- [Практика Go — Основы](https://habr.com/ru/articles/759378/)
+- [Практика Go — Concurrency](https://habr.com/ru/articles/759584/)
 
 ## Code Style
 
