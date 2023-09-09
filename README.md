@@ -15,6 +15,8 @@
 - [Шпаргалка для собеса по GoLang](https://habr.com/ru/articles/758662/)
 - [Практика Go — Основы](https://habr.com/ru/articles/759378/)
 - [Практика Go — Concurrency](https://habr.com/ru/articles/759584/)
+- [Практика Go — Обработка ошибок (1 часть)](https://habr.com/ru/articles/759840/)
+- [Практика Go — Обработка ошибок (2 часть)](https://habr.com/ru/articles/759920/)
 
 ## Code Style
 
