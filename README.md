@@ -28,6 +28,7 @@
 - [Communicating sequential processes(CSP) for Go developer in a nutshell](https://levelup.gitconnected.com/communicating-sequential-processes-csp-for-go-developer-in-a-nutshell-866795eb879d)
 - [Как не ошибиться с конкурентностью в Go](https://habr.com/ru/companies/avito/articles/466495/)
 - [Как избежать применения ORM для Go, используя чистый SQL](https://highload.today/kak-izbezhat-primeneniya-orm-dlya-go-ispolzuya-sql/)
+- [Go Concurrency Patterns](https://github.com/lotusirous/go-concurrency-patterns)
 
 ## Channel Axioms
 
