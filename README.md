@@ -17,6 +17,8 @@
 - [Практика Go — Concurrency](https://habr.com/ru/articles/759584/)
 - [Практика Go — Обработка ошибок (1 часть)](https://habr.com/ru/articles/759840/)
 - [Практика Go — Обработка ошибок (2 часть)](https://habr.com/ru/articles/759920/)
+- [Планирование в Go: Часть III — Конкурентность](https://habr.com/ru/articles/761606/)
+- [Конкурентность — это не параллелизм](https://habr.com/ru/articles/761754/)
 
 ## Code Style
 
