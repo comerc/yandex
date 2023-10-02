@@ -38,6 +38,7 @@
 - [Как не наступать на грабли в Go](https://habr.com/ru/articles/325468/)
 - Web Frameworks: Revel (13) 12.2011 > Gin (71.7) 06.2014 > Echo (26.7) 03.2015 > Fiber (28.5) 01.2020
 - [Тёмные века программного обеспечения](https://github.com/comerc/software_dark_ages/blob/main/TEXT.md)
+- [Событийное моделирование традиционных систем](https://github.com/comerc/event_modeling_traditional_systems)
 
 ## Channel Axioms
 
