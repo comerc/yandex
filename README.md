@@ -13,6 +13,7 @@
 - [Курс Go: онлайн обучение с нуля](https://code-basics.com/ru/languages/go)
 - [Курс по изучению Golang для начинающих](https://golangify.com/go/kurs-izucheniya-golang-dlya-nachinayuschih)
 - [golang-book.ru](http://golang-book.ru/)
+- [roadmap](https://roadmap.sh/golang)
 - [Шпаргалка для собеса по GoLang](https://habr.com/ru/articles/758662/)
 - [Практика Go — Основы](https://habr.com/ru/articles/759378/)
 - [Практика Go — Concurrency](https://habr.com/ru/articles/759584/)
@@ -22,6 +23,7 @@
 - [Конкурентность — это не параллелизм](https://habr.com/ru/articles/761754/)
 - [Ошибки это значения](http://habrahabr.ru/post/269909/)
 - [Почему «ошибки это значения» в Go](https://habr.com/ru/articles/270027/)
+- [ШБР 2023](https://www.youtube.com/watch?v=SGhdeWlgPTo&list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN)
 
 ## Code Style
 
