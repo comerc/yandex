@@ -24,12 +24,14 @@
 - [Ошибки это значения](http://habrahabr.ru/post/269909/)
 - [Почему «ошибки это значения» в Go](https://habr.com/ru/articles/270027/)
 - [ШБР 2023](https://www.youtube.com/watch?v=SGhdeWlgPTo&list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN)
+- [Лайфхаки для кода без побочных эффектов: пишем на Go и красиво, и правильно](https://www.youtube.com/watch?v=G-lhh_1XNcI)
 
 ## Code Style
 
 - [What's in a name?](https://go.dev/talks/2014/names.slide)
 - [uber-go-guide-ru](https://github.com/sau00/uber-go-guide-ru/blob/master/style.md)
 - [Standard Go Project Layout](https://github.com/golang-standards/project-layout)
+- [Organizing a Go module](https://go.dev/doc/modules/layout)
 - [50 оттенков Go](https://habr.com/ru/companies/vk/articles/314804/)
 - [Паттерны проектирования (с картинками)](https://refactoring.guru/ru/design-patterns/go)
 - [Паттерны проектирования (с тестами)](https://github.com/AlexanderGrom/go-patterns)
