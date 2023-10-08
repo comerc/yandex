@@ -51,7 +51,7 @@
 // func New(ctx context.Context, connectionString string, opts ...Option) (*Storage, error) - паттерн опций для конструктора в функциях
 // tdlibClient.GetMessage(&client.GetMessageRequest{}) паттерн опций для методов в структуре
 // благодатное выключение - Graceful Shutdown
-// func New() или func NewSubscriber() ?
+// func New() или func NewSubscriber() для пакета subscriber ?
 //	signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM) - неправильно, signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM) - правильно. os.Interrupt == syscall.SIGINT
 // "божественный конфиг" - https://youtu.be/0Fhsgmz-Gig?list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN&t=906
 // ilyakaznacheev/cleanenv - yaml & env в одном флаконе + godotenv для чтения .env
@@ -59,4 +59,21 @@
 // TEST EXPLORER внутри VS Code
 // jackc/pgx/v5/pgxpool / go-pg + pool - PG Pool
 // Masterminds/squirrel - SQL Builder (by Avito)
+// [Dependency Injection](https://youtu.be/0Fhsgmz-Gig?list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN&t=1001)
+// [Dependency Injection на примере Uber fx](https://www.youtube.com/watch?v=KRdrH9a98HQ)
+// внутри interface ненужно прописывать ключевое слово func
+// type Number interface { ~int | ~int8 } - тип для дженериков: func Fn[T Number](a T) {}; "~" нужна для наследников int, например: type MyInt int
+// er := errgroup.Group{}; eg.SetLimit(limit) - ещё один примитив синхронизации
+// math.Pow() - возведение в степень
+// механизм эвакуации в map
+// RWMutex - читаем без блокировок на чтение, но с блокировкой на запись при чтении(!), или записи
+// map в Go не гарантирует порядок ключей, ES6 - гарантирует, а Dart - нет (hash map vs b-tree map)
+// log.Fatal(http.ListenAndServe(":8080", httpserver.NewHandler())) - как вариант обработки ошибок
+// "божественный" main.go
+// string - это тоже структура и лежит в куче; при передаче аргументом, что копируется?
+// func (Bear) Speak() - можно не указывать "this" при реализации метода структуры
+// Интерфейсы - способ, как следать программу SOLIDной? (Dependency Inversion)
+// где лучше объявлять интерфейсы: где применяются или где реализуются?
+// type (A struct {}; B struct {}) - типы можно объявлять группой
+// go run . | ts '%.Ss' - не работает с println(), только с fmt.Println()
 ```
