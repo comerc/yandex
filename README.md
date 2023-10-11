@@ -117,6 +117,30 @@
 - x.(MyType) - это "утверждение типа" (а не "приведение типа", как например: float64 к int)
 - x.(type) - это "извлечение типа"
 
+## Множества (sets)
+
+В языке Go множества (sets) не являются встроенной частью языка, в отличие от некоторых других языков программирования, таких как Python. Однако, вы можете достичь похожего поведения с помощью карты.
+
+```go
+type Set[V comparable] map[V]struct{}
+
+func NewSet[V comparable](capacity int) Set[V] {
+	return make(Set[V], capacity)
+}
+
+// or
+
+func NewSetWithValue[V comparable](value ...V) Set[V] {
+	set := make(Set[V], len(value))
+
+	for _, v := range value {
+		set[v] = struct{}{}
+	}
+
+	return set
+}
+```
+
 ## Кортежи (tuples)
 
 В языке Go кортежи (tuples) не являются встроенной частью языка, в отличие от некоторых других языков программирования, таких как Python. Однако, вы можете достичь похожего поведения с помощью структур или слайсов.
