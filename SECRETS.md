@@ -64,7 +64,7 @@
 // [Learn Go with Tests - Dependency Injection](https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/dependency-injection)
 // внутри interface ненужно прописывать ключевое слово func
 // type Number interface { ~int | ~int8 } - тип для дженериков: func Fn[T Number](a T) {}; "~" нужна для наследников int, например: type MyInt int
-// er := errgroup.Group{}; eg.SetLimit(limit) - ещё один примитив синхронизации
+// er := errgroup.Group{}; eg.SetLimit(limit) - ещё один примитив синхронизации (golang.org/x/sync/errgroup)
 // math.Pow() - возведение в степень
 // механизм эвакуации в map
 // RWMutex - читаем без блокировок на чтение, но с блокировкой на запись при чтении(!), или записи
@@ -89,4 +89,9 @@
 // вкурить: quicksort, mergesort, heapsort, сортировка вставками и пузырковая сортировка
 // type Counter struct { data  chan int } - когда объявляем канал, не обозначить буферизированный он, или нет (т.к. буферезация - часть инстанса)
 // type MyType struct { k1 int, k2 int } - можно инициализировать не все именованные поля, например: v := MyType{k1:0}; v := MyType{k2:0}
+// for range done {} вместо <-done
+// научиться готовить новый пакет slices (v1.21)
+// как получить доступ на внутренний массив слайса? *(*[3]int)(unsafe.Pointer(&a[0]))
+// [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf) [Как не ошибиться с конкурентностью в Go](https://www.youtube.com/watch?v=4U3EaVufuW4)
+// runtime.Gosched()
 ```
