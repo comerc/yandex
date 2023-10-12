@@ -91,52 +91,60 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"os"
+	"os/signal"
 	"sync"
 )
 
 type Counter struct {
-	data  chan int
-	total chan int
+	set chan int
+	get chan int
 }
 
-func NewCounter() *Counter {
-	data := make(chan int)
-	total := make(chan int)
-	c := Counter{data, total}
+func NewCounter(ctx context.Context) *Counter {
+	set := make(chan int)
+	get := make(chan int)
+	c := Counter{set, get}
 	go func() {
 		var count int
 		for {
 			select {
-			case increment := <-data:
-				count += increment
-			case total <- count:
+			case v := <-set:
+				count += v
+			case get <- count:
+			case <-ctx.Done():
+				return
 			}
 		}
 	}()
 	return &c
 }
 
-func (c *Counter) Add(v int) {
-	c.data <- v
+func (c *Counter) Set(v int) {
+	c.set <- v
 }
 
-func (c *Counter) Total() int {
-	return <-c.total
+func (c *Counter) Get() int {
+	return <-c.get
 }
 
 func main() {
-	counter := NewCounter()
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer cancel()
+	counter := NewCounter(ctx)
 	var wg sync.WaitGroup
-	wg.Add(1000000)
-	for i := 0; i < 1000000; i++ {
+	const total = 1000000
+	wg.Add(total)
+	for i := 0; i < total; i++ {
 		go func() {
-			counter.Add(1)
+			counter.Set(1)
 			wg.Done()
 		}()
 	}
 	wg.Wait()
-	fmt.Println(counter.Total())
+	fmt.Println(counter.Get())
 }
 ```
 
