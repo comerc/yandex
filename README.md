@@ -25,6 +25,7 @@
 - [Почему «ошибки это значения» в Go](https://habr.com/ru/articles/270027/)
 - [ШБР 2023](https://www.youtube.com/watch?v=SGhdeWlgPTo&list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN)
 - [Лайфхаки для кода без побочных эффектов: пишем на Go и красиво, и правильно](https://www.youtube.com/watch?v=G-lhh_1XNcI)
+- [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf)
 
 ## Code Style
 
@@ -74,6 +75,72 @@
 Эти принципы отражают философию Go и помогают разработчикам создавать безопасные, эффективные и понятные программы.
 
 [Ещё](http://go-proverbs.github.io/) [Постулаты Go](https://habr.com/ru/articles/272383/)
+
+## Упражнение на "Communicating sequential processes (CSP)"
+
+"Don't communicate by sharing memory, share memory by communicating"
+
+Задача: Реализовать структуру-счетчик, которая будет инкрементироваться в конкурентной среде. По завершению программа должна выводить итоговое значение счетчика.
+
+Условие: Решение без применения примитивов из пакета sync, исключительно используя канал для обеспечения потокобезопасной передачи/приёма данных.
+
+<details>
+	<summary>Решение</summary>
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+type Counter struct {
+	data  chan int
+	total chan int
+}
+
+func NewCounter() *Counter {
+	data := make(chan int)
+	total := make(chan int)
+	c := Counter{data, total}
+	go func() {
+		var count int
+		for {
+			select {
+			case increment := <-data:
+				count += increment
+			case total <- count:
+			}
+		}
+	}()
+	return &c
+}
+
+func (c *Counter) Add(v int) {
+	c.data <- v
+}
+
+func (c *Counter) Total() int {
+	return <-c.total
+}
+
+func main() {
+	counter := NewCounter()
+	var wg sync.WaitGroup
+	wg.Add(1000000)
+	for i := 0; i < 1000000; i++ {
+		go func() {
+			counter.Add(1)
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	fmt.Println(counter.Total())
+}
+```
+
+</details>
 
 ## Practice
 
