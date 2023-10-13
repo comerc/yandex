@@ -94,4 +94,7 @@
 // как получить доступ на внутренний массив слайса? *(*[3]int)(unsafe.Pointer(&a[0]))
 // [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf) [Как не ошибиться с конкурентностью в Go](https://www.youtube.com/watch?v=4U3EaVufuW4)
 // runtime.Gosched()
+// interval := 0 * time.Second - идиома
+// GetWorkDir() - ex := os.Executable() >> dir := filepath.Dir(ex) >> strings.Contains(dir, "go-build") - как способ узнать: go build / go run
+// time.AfterFunc - возможность вызвать callback
 ```
