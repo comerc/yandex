@@ -46,6 +46,7 @@
 - [Тёмные века программного обеспечения](https://github.com/comerc/software_dark_ages/blob/main/TEXT.md)
 - [Событийное моделирование традиционных систем](https://github.com/comerc/event_modeling_traditional_systems/blob/main/TEXT.md)
 - [Event Modeling Cheat Sheet](https://eventmodeling.org/posts/event-modeling-cheatsheet/)
+- [Idiomatic Go](https://dmitri.shuralyov.com/idiomatic-go)
 
 ## Channel Axioms
 
@@ -76,13 +77,16 @@
 
 [Ещё](http://go-proverbs.github.io/) [Постулаты Go](https://habr.com/ru/articles/272383/)
 
-## Упражнение на "Communicating sequential processes (CSP)"
+## Упражнение на "Communicating sequential processes (CSP)" / "Actor Model"
+
+![](./assets/two_models_of_communucations.png)
+![](./assets/blocking_bug_causes.png)
 
 "Don't communicate by sharing memory, share memory by communicating"
 
 Задача: Реализовать структуру-счетчик, которая будет инкрементироваться в конкурентной среде. По завершению программа должна выводить итоговое значение счетчика.
 
-Условие: Решение без применения примитивов из пакета sync, исключительно используя канал для обеспечения потокобезопасной передачи/приёма данных.
+Условие: Без применения примитивов из пакета sync, исключительно используя канал для обеспечения потокобезопасной передачи/приёма данных.
 
 <details>
 	<summary>Решение</summary>
@@ -98,36 +102,23 @@ import (
 	"sync"
 )
 
-type Counter struct {
-	set chan int
-	get chan int
-}
+type Counter chan int
 
-func NewCounter(ctx context.Context) *Counter {
-	set := make(chan int)
-	get := make(chan int)
-	c := Counter{set, get}
+func NewCounter(ctx context.Context) Counter {
+	counter := make(Counter)
 	go func() {
 		var count int
 		for {
 			select {
-			case v := <-set:
+			case v := <-counter:
 				count += v
-			case get <- count:
+			case counter <- count:
 			case <-ctx.Done():
 				return
 			}
 		}
 	}()
-	return &c
-}
-
-func (c *Counter) Set(v int) {
-	c.set <- v
-}
-
-func (c *Counter) Get() int {
-	return <-c.get
+	return counter
 }
 
 func main() {
@@ -139,12 +130,12 @@ func main() {
 	wg.Add(total)
 	for i := 0; i < total; i++ {
 		go func() {
-			counter.Set(1)
+			counter <- 1
 			wg.Done()
 		}()
 	}
 	wg.Wait()
-	fmt.Println(counter.Get())
+	fmt.Println(<-counter)
 }
 ```
 
