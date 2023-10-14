@@ -24,6 +24,7 @@
 // val.(myType) - утверждение типа работает, если тип для val неопределён (т.е. interface{})
 // var i int; defer func(i int) { println(i) }(i); i = 1 - выведет 0
 // var i int; defer func() { println(i) }(); i = 1 - выведет 1
+// func test() (x int) { defer func() { x++ }(); x = 1; return } - выведет 2
 // есть ли в стандартной библиотеке пакет для работы с коллекциями разных типов через дженерики?
 // [Лучший regexp для Go](https://habr.com/ru/articles/756222/)
 // regexp.MustCompile() для глобальных переменных вместо regexp.Compile()
@@ -97,4 +98,10 @@
 // interval := 0 * time.Second - идиома?
 // GetWorkDir() - ex := os.Executable() >> dir := filepath.Dir(ex) >> strings.Contains(dir, "go-build") - как способ узнать: go build / go run
 // time.AfterFunc - возможность вызвать callback
+// go увеличивает capacity только при append, но не на обрезаниях
+// a := []int{1, 2}; a = append(a, []int{3, 4, 5}...); println(cap(a)) // 6 - прибавляет всегда чётное число, равное len(a) или больше на 1. Фокус, когда добавляемых элементов больше, чем размер исходного слайса. При этом финальный размер должен быть больше либо равен 5. Ответ: alignUp rounds n up to a multiple of a. a must be a power of 2. Дополнительно: https://habr.com/ru/articles/660827/
+// for n := range ch {} - классическая ошибка - забыть закрыть канал, тогда будет блокировка типа <-done без пары записи в канал
+// префикс must обычно используется в функциях, которые могут вызвать панику
+// для модульных/интеграционных-тестов package не менять (иначе, только ради тестов открываю все внутренности в API модуля - это неправильно, только добавляет когнитивную нагрузку в Developer Experience), а для приёмочных выносить в отдельный package с суффиксом _test, что заставляет определить API модуля.
+// io.Discard - заглушка для io.Writer
 ```
