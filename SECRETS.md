@@ -53,7 +53,7 @@
 // tdlibClient.GetMessage(&client.GetMessageRequest{}) паттерн опций для методов в структуре
 // благодатное выключение - Graceful Shutdown
 // func New() или func NewSubscriber() для пакета subscriber ?
-//	signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM) - неправильно, signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM) - правильно. os.Interrupt == syscall.SIGINT
+// signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM) - неправильно, signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM) - правильно. os.Interrupt == syscall.SIGINT
 // "божественный конфиг" - https://youtu.be/0Fhsgmz-Gig?list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN&t=906
 // ilyakaznacheev/cleanenv - yaml & env в одном флаконе + godotenv для чтения .env
 // если функция кидает панику, то у неё должен быть префикс Must*, например MustLoad()
@@ -104,4 +104,13 @@
 // префикс must обычно используется в функциях, которые могут вызвать панику
 // для модульных/интеграционных-тестов package не менять (иначе, только ради тестов открываю все внутренности в API модуля - это неправильно, только добавляет когнитивную нагрузку в Developer Experience), а для приёмочных выносить в отдельный package с суффиксом _test, что заставляет определить API модуля.
 // io.Discard - заглушка для io.Writer
+// var _ MyInterface = (*MyStruct)(nil) - как с помощью типизированного nil можно проверить, что тип структуры реализует интерфейс, не создавая инстанс этой структуры
+// [Compile-time Dependency Injection for Go](https://github.com/google/wire)
+// [Fx is a dependency injection system for Go](https://github.com/uber-go/fx)
+// https://github.com/uber-go/zap
+// https://github.com/golangci/golangci-lint
+// https://github.com/uber-go/config
+// [Методы организации DI и жизненного цикла приложения в GO](https://habr.com/ru/companies/vivid_money/articles/531822/)
+// https://github.com/go-telegram-bot-api/telegram-bot-api
+// вызов r.Context() внутри обработчика для http.NewServeMux()
 ```
