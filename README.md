@@ -47,6 +47,11 @@
 - [Тёмные века программного обеспечения](https://github.com/comerc/software_dark_ages/blob/main/TEXT.md)
 - [Событийное моделирование традиционных систем](https://github.com/comerc/event_modeling_traditional_systems/blob/main/TEXT.md)
 - [Event Modeling Cheat Sheet](https://eventmodeling.org/posts/event-modeling-cheatsheet/)
+- [Зачем нужны модульные тесты и как заставить их работать на вас](https://habr.com/ru/articles/767858/)
+- [Масштабирование приёмочных тестов](https://habr.com/ru/articles/765996/)
+- [Работа без имитаторов](https://habr.com/ru/articles/765956/)
+- [Введение в приёмочные тесты](https://habr.com/ru/articles/765892/)
+- [Антипаттерны в TDD](https://habr.com/ru/articles/767874/)
 - [Idiomatic Go](https://dmitri.shuralyov.com/idiomatic-go)
 - [Go Patterns](https://github.com/tmrts/go-patterns)
 
