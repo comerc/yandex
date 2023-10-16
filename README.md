@@ -26,6 +26,7 @@
 - [ШБР 2023](https://www.youtube.com/watch?v=SGhdeWlgPTo&list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN)
 - [Лайфхаки для кода без побочных эффектов: пишем на Go и красиво, и правильно](https://www.youtube.com/watch?v=G-lhh_1XNcI)
 - [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf)
+- [Interfaces in Go](https://go101.org/article/interface.html)
 
 ## Code Style
 
@@ -47,6 +48,7 @@
 - [Событийное моделирование традиционных систем](https://github.com/comerc/event_modeling_traditional_systems/blob/main/TEXT.md)
 - [Event Modeling Cheat Sheet](https://eventmodeling.org/posts/event-modeling-cheatsheet/)
 - [Idiomatic Go](https://dmitri.shuralyov.com/idiomatic-go)
+- [Go Patterns](https://github.com/tmrts/go-patterns)
 
 ## Channel Axioms
 
@@ -76,6 +78,21 @@
 Эти принципы отражают философию Go и помогают разработчикам создавать безопасные, эффективные и понятные программы.
 
 [Ещё](http://go-proverbs.github.io/) [Постулаты Go](https://habr.com/ru/articles/272383/)
+
+## Dependency Injection
+
+**Inversion of Control** (IoC) и **Dependency Injection** (DI) - это два взаимосвязанных принципа, используемые в разработке программного обеспечения для уменьшения связанности и улучшения модульности кода.
+
+IoC - это общий принцип, который говорит о том, что пользовательский код не должен самостоятельно управлять потоком выполнения. Вместо этого поток управления обрабатывается централизованным или внешним сервисом. Это означает, что объекты не создают другие объекты, на которые они полагаются для работы. Вместо этого они получают объекты, которые им нужны, от внешнего источника.
+
+DI - это конкретная форма IoC, где зависимости предоставляются внешним сервисом. DI позволяет нам разрабатывать слабо связанные модули. Внедрение зависимостей осуществляется путем предоставления зависимости объекту (клиенту), а не путем создания зависимости внутри объекта.
+
+Таким образом, можно сказать, что DI - это способ реализации IoC. Они оба работают вместе для достижения слабой связанности и лучшей модульности в коде.
+
+- [Dependency Injection на примере Uber fx](https://www.youtube.com/watch?v=KRdrH9a98HQ)
+- [Методы организации DI и жизненного цикла приложения в GO](https://habr.com/ru/companies/vivid_money/articles/531822/)
+
+Не путать с **Dependency Inversion Principle** - это принцип SOLID в объектно-ориентированном программировании, который помогает уменьшить связанность в коде. Он гласит: "Модули верхнего уровня не должны зависеть от модулей нижнего уровня. Оба должны зависеть от абстракций. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций".
 
 ## Упражнение на "Communicating sequential processes (CSP)" / "Actor Model"
 

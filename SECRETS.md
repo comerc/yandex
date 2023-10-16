@@ -110,7 +110,6 @@
 // https://github.com/uber-go/zap
 // https://github.com/golangci/golangci-lint
 // https://github.com/uber-go/config
-// [Методы организации DI и жизненного цикла приложения в GO](https://habr.com/ru/companies/vivid_money/articles/531822/)
 // https://github.com/go-telegram-bot-api/telegram-bot-api
 // вызов r.Context() внутри обработчика для http.NewServeMux()
 ```
