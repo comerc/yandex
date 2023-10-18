@@ -112,4 +112,5 @@
 // https://github.com/uber-go/config
 // https://github.com/go-telegram-bot-api/telegram-bot-api
 // вызов r.Context() внутри обработчика для http.NewServeMux()
+// sync.TryLock
 ```
