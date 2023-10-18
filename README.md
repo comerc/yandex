@@ -163,6 +163,27 @@ func main() {
 
 </details>
 
+## Буферизированный-небуферизированный канал
+
+- `ch := make(chan string)` - блокирует передатчик, пока не готов приёмник
+- `bufferedCh := make(chan string, 1)` - неблокирует передатчик, пока не готов приёмник
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	ch := make(chan string, 0) // Переключение на буферизированный канал изменит поведение
+	go func() {
+		msg := <-ch
+		fmt.Println("Получено сообщение:", msg)
+	}()
+	ch <- "Привет, мир!" // Эта строка блокируется до тех пор, пока горутина не прочитает значение из канала
+	fmt.Println("Главная горутина завершена")
+}
+```
+
 ## Practice
 
 - [go-in-practice](https://github.com/diptomondal007/GoLangBooks/blob/master/go-in-practice.pdf)
