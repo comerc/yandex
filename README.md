@@ -184,6 +184,105 @@ func main() {
 }
 ```
 
+## Каналы: more writers - one reader
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	ch := make(chan int)
+	done := make(chan bool)
+
+	go func() {
+		for i := range ch {
+			if i == 20 {
+				done <- true
+				return
+			}
+			fmt.Printf("%d\n", i)
+		}
+	}()
+
+	go func() {
+		for i := 0; i < 10; i++ {
+			select {
+			case ch <- i:
+				time.Sleep(1 * time.Second)
+			case <-done:
+				return
+			}
+		}
+	}()
+
+	go func() {
+		for i := 10; i <= 20; i++ {
+			select {
+			case ch <- i:
+				time.Sleep(1 * time.Second)
+			case <-done:
+				return
+			}
+		}
+	}()
+
+	<-done
+
+}
+```
+
+## Каналы: one writer - more readers
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	ch := make(chan int)
+	done := make(chan bool)
+
+	go func() {
+		for i := range ch {
+			fmt.Printf("reader1: %d\n", i)
+		}
+		done <- true
+	}()
+
+	go func() {
+		for i := range ch {
+			fmt.Printf("reader2: %d\n", i)
+		}
+		done <- true
+	}()
+
+	go func() {
+		for i := range ch {
+			fmt.Printf("reader3: %d\n", i)
+		}
+		done <- true
+	}()
+
+	for i := 0; i <= 300; i++ {
+		if i == 300 {
+			close(ch)
+			return
+		}
+		time.Sleep(1 * time.Second)
+		ch <- i
+	}
+
+	<-done
+}
+```
+
 ## Practice
 
 - [go-in-practice](https://github.com/diptomondal007/GoLangBooks/blob/master/go-in-practice.pdf)
@@ -372,7 +471,7 @@ func getArray(a []int) []int {
 Видео: [Что нужно знать о слайсах в Go](https://www.youtube.com/watch?v=1vAIvqDo5LE)
 
 <details>
-	<summary>Больше практики</summary>
+	<summary>Больше практики по слайсам</summary>
 
 ```go
 package main
@@ -474,6 +573,51 @@ func main() {
 	example3Map()
 }
 
+```
+
+</details>
+
+<details>
+	<summary>Как узнать, что два слайса используют один базовый массив?</summary>
+
+```go
+package main
+
+import "unsafe"
+
+func slicesShareMemory[T any](inner, outer []T) bool {
+	if len(inner) == 0 || len(outer) == 0 {
+		return false
+	}
+
+	aFirstAddr := unsafe.Pointer(&inner[0])
+	bFirstAddr := unsafe.Pointer(&outer[0])
+	aLastAddr := unsafe.Add(aFirstAddr, uintptr(cap(inner)-1)*unsafe.Sizeof(inner[0]))
+	bLastAddr := unsafe.Add(bFirstAddr, uintptr(cap(outer)-1)*unsafe.Sizeof(outer[0]))
+
+	switch {
+	case uintptr(aFirstAddr) >= uintptr(bFirstAddr) && uintptr(aFirstAddr) <= uintptr(bLastAddr),
+		uintptr(bFirstAddr) >= uintptr(aFirstAddr) && uintptr(bFirstAddr) <= uintptr(aLastAddr):
+		return true
+	default:
+		return false
+	}
+}
+
+func main() {
+	a := []int{1, 2, 3}
+	b := a[1:2]
+	c := a[2:3]
+	d := []int{1, 2, 3}
+	e := append(a, 4)
+	println(slicesShareMemory(b, a))
+	println(slicesShareMemory(a, b))
+	println(slicesShareMemory(b, c))
+	println(slicesShareMemory(c, b))
+	println(slicesShareMemory(a, c))
+	println(slicesShareMemory(c, d))
+	println(slicesShareMemory(c, e))
+}
 ```
 
 </details>
