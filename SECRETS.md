@@ -113,4 +113,11 @@
 // https://github.com/go-telegram-bot-api/telegram-bot-api
 // вызов r.Context() внутри обработчика для http.NewServeMux()
 // sync.TryLock
+// slices.Clip - имеет смысл пробовать после 10Мб https://www.youtube.com/watch?v=G-lhh_1XNcI
+// type parameters VS generics - зачем два термина? Таким образом, “type parameters” и “generics” относятся к различным аспектам одной и той же функциональности. “Generics” относится к общей концепции написания кода, который может работать с различными типами, в то время как “type parameters” относится к конкретному механизму, используемому для реализации этой функциональности.
+// `func F[T ~int](i T) {}` - approximation element, допускает `int` и `type MyInt int` (требуемый базовый тип)
+// как запомнить Itoa & Atoi из пакета strconv: i_to_a & a_to_i
+// type M[T any] []T - дженерик для слайса, определяемый параметром типа
+// почему параметры типа в Go обозначают в квадратных скобочках, а не в треугольных, как в других языках?
+// А можно сказать, что "approximation element" для параметров типа в дженериках - это LSP из SOLID?
 ```
