@@ -27,6 +27,7 @@
 - [Лайфхаки для кода без побочных эффектов: пишем на Go и красиво, и правильно](https://www.youtube.com/watch?v=G-lhh_1XNcI)
 - [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf)
 - [Interfaces in Go](https://go101.org/article/interface.html)
+- [Туториал по дженерикам в Go](https://kovardin.ru/articles/go/generics/)
 
 ## Code Style
 
@@ -300,6 +301,33 @@ func main() {
 Есть поддержка абстракции через интерфейсы. Интерфейсы в Go позволяют определить набор методов, которые должны быть реализованы для типа данных. Это позволяет создавать абстрактные типы данных и работать с ними, не завися от конкретной реализации.
 
 Объявление или привязка структуры к методу называется "методом-получателем" (method receiver). При объявлении метода для структуры, указывается получатель - тип структуры, к которому привязывается метод. Это позволяет вызывать методы на экземплярах этой структуры.
+
+## А-ля статический метод
+
+Вызов метода на nil указателе - валидная операция. А вот если метод попытается обратиться к данным (не методам) объекта, то вот тут и будет "nil dereference".
+
+```go
+package main
+
+import "fmt"
+
+type MyStruct struct {
+	data string
+}
+
+func (m *MyStruct) PrintData() {
+	if m != nil {
+		fmt.Println(m.data)
+	} else {
+		fmt.Println("nil dereference")
+	}
+}
+
+func main() {
+	var ptr *MyStruct = nil
+	ptr.PrintData() // вызов метода на nil указателе
+}
+```
 
 ## Термины
 
