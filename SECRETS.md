@@ -40,7 +40,7 @@
 // testify - в помощь по тестированию к стандартной библиотеке
 // mockery - для тестов
 // [migrate](https://github.com/golang-migrate/migrate)
-// flag - стандартный пакет, плюс выбор: flaggy | go-flags | pflag
+// flag - стандартный пакет, плюс выбор: flaggy 840 | go-flags 2500 | pflag 2200
 // exec.Command("bash", "-c", "ls -a -l -h") - как создать полную команду в одну строку вместо exec.Command("ls", "-a", "-l", "-h")
 // os.Exit(1) - игнорирует defer
 // цветные логи: https://github.com/GolangLessons/url-shortener/blob/c3987f66469a8d0769add18521adb9023520be95/internal/lib/logger/handlers/slogpretty/slogpretty.go
@@ -52,7 +52,7 @@
 // func New(ctx context.Context, connectionString string, opts ...Option) (*Storage, error) - паттерн опций для конструктора в функциях
 // tdlibClient.GetMessage(&client.GetMessageRequest{}) паттерн опций для методов в структуре
 // благодатное выключение - Graceful Shutdown
-// func New() или func NewSubscriber() для пакета subscriber ?
+// func New() или func NewSubscriber() для пакета subscriber ? нет, например: errors.New
 // signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM) - неправильно, signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM) - правильно. os.Interrupt == syscall.SIGINT
 // "божественный конфиг" - https://youtu.be/0Fhsgmz-Gig?list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN&t=906
 // ilyakaznacheev/cleanenv - yaml & env в одном флаконе + godotenv для чтения .env
@@ -120,4 +120,20 @@
 // type M[T any] []T - дженерик для слайса, определяемый параметром типа
 // почему параметры типа в Go обозначают в квадратных скобочках, а не в треугольных, как в других языках?
 // А можно сказать, что "approximation element" для параметров типа в дженериках - это LSP из SOLID?
+// x, y = "1", 2 - называется "присваивание кортежу"
+// UTF-8 - принятая кодировка в Go (авторы Ken Thompson и Rob Pike), которая описывает рунами символы из unicode.org, где каждая руна может иметь разную длину от одного до четырех байтов, в отличии от кодировки UTF-32 (фиксированный размер int32), и UTF-16 - это кодировка фиксированной длины, которая использует два или четыре байта.
+// генератор констант iota
+// нетипизированные константы
+// type MyInt int - "именованный тип", может применяться "анономным полем" через механизм "embedded": type MyObj struct { MyInt }; println(MyObj{1}.MyInt)
+// type MyType struct {}; func (a *MyType) Try() { if a == nil { println("nil") } }; var a *MyType; a.Try(); - подобие статического метода класса
+// type MyType struct{}; func (a *MyType) Try() {}; var a *MyType; try := (*MyType).Try; try(a); - выражение-метод, работает и с (*MyType).Try и с MyType.Try в зависимости от того, как передаётся рессивер ("значение-метод" - это метод в переменной от инстанса, "выражение-метод" - это метод в переменной от типа)
+// var _ io.Writer = (*bytes.Buffer)(nil) - проверка без создания экзепляра, что *bytes.Buffer реализует интерфейс io.Writer
+// Методы, определенные для типа T, также доступны для указателей этого типа (*T). Однако обратное не верно: методы, определенные для *T, не доступны для T.
+// интерфейсный тип не даёт типизированный nil: var w io.Writer = nil // <nil> VS var w *os.File = nil // (*os.File)(nil)
+// func fn(out io.Writer) { if out != nil { ... } } - потенциальная ошибка, если передать типизированный nil, например var buf *bytes.Buffer
+// var x any = []int{1, 2, 3}; println(x == x) - какой линтер может отлавливать эту ситуацию? Сравнивайте значения интерфейсов, только если вы уверены, что они содержат динамические значения сравниваемых типов.
+// type Interface interface - "базовый" интерфейс модуля называется Interface (например: sort.Interface)
+// rw := w.(io.ReadWriter) - panic: interface conversion; rw, ok := w.(io.ReadWriter) - ok == false
+// io.WriteString - это рекомендованный способ записи строки в io.Writer
+// switch x := x.(type) { case nil: return "NULL" } - при выборе типа можно проверять на nil; в выборе типа применение fallthrough не разрешено
 ```
