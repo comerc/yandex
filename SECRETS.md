@@ -84,7 +84,7 @@
 // что не нравится в Go? имплементация методов интерфейса в отрыве от объявления интерфейса, т.е. отсутствует самодокументирование кода, как например в Dart: class MyClass implements MyInterface {}
 // try MyClass { lock sync.Mutex } - ненужно инициализировать, тут работает "ленивая инициализация"
 // arr := [...]int{5: 0} - что лежит в arr?
-// break внутри case в select / switch - выйдут из области видимости select / switch
+// break внутри case в select / switch - выйдут из области видимости select / switch (а не прервут for)
 // повторить Go Cuncurrency Patterns https://github.com/Konstantin8105/Go-pipelines
 // повторить Go Cuncurrency Patterns https://habr.com/ru/companies/otus/articles/722880/
 // вкурить: quicksort, mergesort, heapsort, сортировка вставками и пузырковая сортировка
@@ -136,4 +136,7 @@
 // rw := w.(io.ReadWriter) - panic: interface conversion; rw, ok := w.(io.ReadWriter) - ok == false
 // io.WriteString - это рекомендованный способ записи строки в io.Writer
 // switch x := x.(type) { case nil: return "NULL" } - при выборе типа можно проверять на nil; в выборе типа применение fallthrough не разрешено
+// switch без условия полезен тем, что может использоваться для проверки нескольких условий
+// fallthrough внутри switch "проваливает" выполнение в следующий блок case без проверки условия в этом case
+// switch без условий эквивалентен switch true, т.е. switch { case true: println("OK") }
 ```
