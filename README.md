@@ -28,6 +28,7 @@
 - [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf)
 - [Interfaces in Go](https://go101.org/article/interface.html)
 - [Туториал по дженерикам в Go](https://kovardin.ru/articles/go/generics/)
+- [DataDog/go-profiler-notes](https://github.com/DataDog/go-profiler-notes)
 
 ## Code Style
 
