@@ -13,6 +13,7 @@
 - [Курс Go: онлайн обучение с нуля](https://code-basics.com/ru/languages/go)
 - [Курс по изучению Golang для начинающих](https://golangify.com/go/kurs-izucheniya-golang-dlya-nachinayuschih)
 - [golang-book.ru](http://golang-book.ru/)
+- [Effective Go (RU)](https://github.com/Konstantin8105/Effective_Go_RU)
 - [roadmap](https://roadmap.sh/golang)
 - [Шпаргалка для собеса по GoLang](https://habr.com/ru/articles/758662/)
 - [Практика Go — Основы](https://habr.com/ru/articles/759378/)
@@ -62,7 +63,7 @@
 - Отправка на nil-канал блокируется навсегда
 - Приём от nil-канала блокируется навсегда
 - Отправка в закрытый канал приводит к панике
-- Приём из закрытого канала немедленно возвращает нулевое значение
+- Приём из закрытого канала немедленно возвращает нулевое значение (широкополосно, т.е. всем слушателям канала)
 
 ## Go Proverbs
 
