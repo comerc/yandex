@@ -58,6 +58,7 @@
 - [Idiomatic Go](https://dmitri.shuralyov.com/idiomatic-go)
 - [Go Patterns](https://github.com/tmrts/go-patterns)
 - [Проблемы функции Golang init](https://habr.com/ru/articles/771858/)
+- [Оптимизация памяти и управление сборщиком мусора в Go: GOGC и GOMEMLIMIT](https://habr.com/ru/articles/742402/)
 
 ## Channel Axioms
 
