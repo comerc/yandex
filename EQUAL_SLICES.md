@@ -40,9 +40,9 @@ var (
 )
 
 func init() {
-	a = make([]int, 10000000)
-	c = make([]int, 10000000)
-	for i := 0; i < 10000000; i++ {
+	a = make([]int, 10_000_000)
+	c = make([]int, 10_000_000)
+	for i := 0; i < 10_000_000; i++ {
 		a[i] = i
 		c[i] = i
 	}
@@ -50,7 +50,7 @@ func init() {
 
 func BenchmarkOne(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = getInternalArray[[10000000]int](a...) == getInternalArray[[10000000]int](c...)
+		_ = getInternalArray[[10_000_000]int](a...) == getInternalArray[[10000000]int](c...)
 	}
 }
 
@@ -78,7 +78,7 @@ import (
 	"unsafe"
 )
 
-func SlicesEqual[T comparable](s1, s2 []int) bool {
+func EqualSlices[T comparable](s1, s2 []int) bool {
 	return *(*T)(unsafe.Pointer(&s1[0])) == *(*T)(unsafe.Pointer(&s2[0]))
 }
 
@@ -87,9 +87,9 @@ var (
 )
 
 func init() {
-	a = make([]int, 10000000)
-	c = make([]int, 10000000)
-	for i := 0; i < 10000000; i++ {
+	a = make([]int, 10_000_000)
+	c = make([]int, 10_000_000)
+	for i := 0; i < 10_000_000; i++ {
 		a[i] = i
 		c[i] = i
 	}
@@ -97,7 +97,7 @@ func init() {
 
 func BenchmarkOne(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		SlicesEqual[[10000000]int](a, c)
+		EqualSlices[[10_000_000]int](a, c)
 	}
 }
 
