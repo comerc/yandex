@@ -179,4 +179,8 @@
 // `c := make(chan int, 1); close(c); select { case c<-1: }` - select может попытаться записать в закрытый канал, что приведёт к panic; т.е. тут недостаточно закрыть канал, нужно его сбросить в nil (c = nil)
 // приоритизация в select: https://stackoverflow.com/questions/11117382/priority-in-go-select-statement-workaround
 // `for i, v := range &a { a[i] = 1; print(v) }` - range принимает указатель на массив, чтобы увидеть изменения v (вместо print(a[i]))
+// Если запись карты создается во время итерации, она может быть произведена во время итерации или пропущена. Выбор может варьироваться для каждой созданной записи и от одной итерации к другой.
+// break loop VS goto next; `loop:` перед for: `loop:for{switch{case true: break loop}}` или `next:` после for: `for{switch{case true: goto next}}next:`
+// Важное правило, о котором следует помнить, заключается в том, что оператор break завершает выполнение самого последнего оператора for, switch или select.
+// continue тоже можно использовать с меткой
 ```
