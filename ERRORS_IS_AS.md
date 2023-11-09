@@ -15,7 +15,9 @@ func (e MyError) Error() string {
 
 func main() {
   err := MyError{"My custom error"}
+  // сравнение со значением:
   println(errors.Is(err, MyError{"My custom error"})) // true
+  // сравнение с типом:
   println(errors.As(err, &MyError{})) // true
 }
 ```
