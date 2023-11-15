@@ -26,6 +26,8 @@
 - [Почему «ошибки это значения» в Go](https://habr.com/ru/articles/270027/)
 - [ШБР 2023](https://www.youtube.com/watch?v=SGhdeWlgPTo&list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN)
 - [Лайфхаки для кода без побочных эффектов: пишем на Go и красиво, и правильно](https://www.youtube.com/watch?v=G-lhh_1XNcI)
+- [Оптимизация памяти и управление сборщиком мусора в Go: GOGC и GOMEMLIMIT](https://habr.com/ru/articles/742402/)
+- [Go To Memory](https://habr.com/ru/companies/oleg-bunin/articles/676332/)
 - [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf)
 - [Interfaces in Go](https://go101.org/article/interface.html)
 - [Туториал по дженерикам в Go](https://kovardin.ru/articles/go/generics/)
@@ -58,7 +60,6 @@
 - [Idiomatic Go](https://dmitri.shuralyov.com/idiomatic-go)
 - [Go Patterns](https://github.com/tmrts/go-patterns)
 - [Проблемы функции Golang init](https://habr.com/ru/articles/771858/)
-- [Оптимизация памяти и управление сборщиком мусора в Go: GOGC и GOMEMLIMIT](https://habr.com/ru/articles/742402/)
 
 ## Channel Axioms
 
