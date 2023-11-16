@@ -10,6 +10,15 @@ https://youtu.be/MHn-taXfQ8o?t=3748
 - Nodes
 - Requests
 
+При администрировании кластера Kubernetes администратор может настроить два параметра:
+
+```
+cpu.cfs_period_us (глобальная установка);
+cpu.cfs_quota_us (установка для каждого пода).
+```
+
+[runtime: make GOMAXPROCS cfs-aware on GOOS=linux](https://github.com/golang/go/issues/33803) - на сегодня проблему решает uber-go/automaxprocs
+
 Рекомендации:
 
 - Requests: всегда определяйте CPU MEM requests
