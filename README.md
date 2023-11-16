@@ -32,6 +32,7 @@
 - [Interfaces in Go](https://go101.org/article/interface.html)
 - [Туториал по дженерикам в Go](https://kovardin.ru/articles/go/generics/)
 - [DataDog/go-profiler-notes](https://github.com/DataDog/go-profiler-notes)
+- [Go Developer Survey 2021 Results](https://go.dev/blog/survey2021-results)
 
 ## Code Style
 
