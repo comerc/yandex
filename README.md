@@ -61,6 +61,7 @@
 - [Idiomatic Go](https://dmitri.shuralyov.com/idiomatic-go)
 - [Go Patterns](https://github.com/tmrts/go-patterns)
 - [Проблемы функции Golang init](https://habr.com/ru/articles/771858/)
+- [Методические рекомендации по написанию Go кода от Uber](https://github.com/sau00/uber-go-guide-ru/blob/master/style.md)
 
 ## Channel Axioms
 
