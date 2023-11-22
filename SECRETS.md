@@ -133,7 +133,7 @@
 // type MyType struct {}; func (a *MyType) Try() { if a == nil { println("nil") } }; var a *MyType; a.Try(); - подобие статического метода класса
 // type MyType struct{}; func (a *MyType) Try() {}; var a *MyType; try := (*MyType).Try; try(a); - выражение-метод, работает и с (*MyType).Try и с MyType.Try в зависимости от того, как передаётся рессивер ("значение-метод" - это метод в переменной от инстанса, "выражение-метод" - это метод в переменной от типа)
 // var _ io.Writer = (*bytes.Buffer)(nil) - проверка без создания экзепляра, что *bytes.Buffer реализует интерфейс io.Writer
-// Методы, определенные для типа T, также доступны для указателей этого типа (*T). Однако обратное не верно: методы, определенные для *T, не доступны для T.
+// Методы, определенные для типа T, также доступны для указателей этого типа (*T). Однако обратное неверно: методы, определенные для *T, недоступны для T.
 // интерфейсный тип не даёт типизированный nil: var w io.Writer = nil // <nil> VS var w *os.File = nil // (*os.File)(nil)
 // func fn(out io.Writer) { if out != nil { ... } } - потенциальная ошибка, если передать типизированный nil, например var buf *bytes.Buffer
 // var x any = []int{1, 2, 3}; println(x == x) - какой линтер может отлавливать эту ситуацию? Сравнивайте значения интерфейсов, только если вы уверены, что они содержат динамические значения сравниваемых типов.
@@ -270,4 +270,5 @@
 // go clean --modcache - как очистить кэш модулей
 // TestLogin_FailCases - применение табличных тестов отдельно для FailCases, т.к. они лучше подходят для обобщения
 // `return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { ctx := context.WithValue(r.Context(), errorKey, ErrInvalidToken); next.ServeHTTP(w, r.WithContext(ctx)) }` - пример применения context.WithValue внутри http middleware для передачи сообщения об ошибке
+// runtime.LockOSThread() лочит P на M неразмывая кеши ядра и т.п.
 ```
