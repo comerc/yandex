@@ -42,8 +42,8 @@ func main() {
 
   f := &ci{}
 
-  v0 := wrapper(f, ptr0a, ptr1a) // требуется true
-  v1 := wrapper(f, ptr0b, ptr1b) // требуется true
+  v0 := wrapper(f, ptr0a, ptr1a) // true
+  v1 := wrapper(f, ptr0b, ptr1b) // true
   v2 := wrapper(f, ptr0a, ptr0b) // false
   v3 := wrapper(f, ptr1a, ptr1b) // false
 
