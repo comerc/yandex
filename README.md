@@ -50,7 +50,7 @@
 - [Go Concurrency Patterns](https://github.com/lotusirous/go-concurrency-patterns)
 - [Go Concurrency Exercises](https://github.com/comerc/go-concurrency-exercises)
 - [Как не наступать на грабли в Go](https://habr.com/ru/articles/325468/)
-- Web Frameworks: Revel (13 ⭐️) 12.2011 > Gin (71.7 ⭐️) 06.2014 > Echo (26.7 ⭐️) 03.2015 > Fiber (28.5 ⭐️) 01.2020
+- Web Frameworks: [Revel](https://github.com/revel/revel) ![](https://img.shields.io/github/stars/revel/revel?style=social) 12.2011 > [Gin](https://github.com/gin-gonic/gin) ![](https://img.shields.io/github/stars/gin-gonic/gin?style=social) 06.2014 > [Echo](https://github.com/labstack/echo) ![](https://img.shields.io/github/stars/labstack/echo?style=social) 03.2015 > [Fiber](https://github.com/gofiber/fiber) ![](https://img.shields.io/github/stars/gofiber/fiber?style=social) 01.2020
 - [Тёмные века программного обеспечения](https://github.com/comerc/software_dark_ages/blob/main/TEXT.md)
 - [Событийное моделирование традиционных систем](https://github.com/comerc/event_modeling_traditional_systems/blob/main/TEXT.md)
 - [Event Modeling Cheat Sheet](https://eventmodeling.org/posts/event-modeling-cheatsheet/)
