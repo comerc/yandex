@@ -1,4 +1,4 @@
-# Request For Proposal (RFP)
+# Request For Proposal (RFP) - SUMMARY
 
 В канале Gopher Club:
 
