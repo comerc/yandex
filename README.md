@@ -815,6 +815,8 @@ O(n \* log(n)) означает, что время выполнения алго
 
 Из YouTube: [ВСЯ СЛОЖНОСТЬ АЛГОРИТМОВ ЗА 11 МИНУТ](https://www.youtube.com/watch?v=cXCuXNwzdfY)
 
+[Девять алгоритмов, которые изменили будущее | Джон Маккормик](https://t.me/yaprogrammer/365)
+
 ## [/article](./article/) - алгоритмические задачи
 
 - [Как проходят алгоритмические секции на собеседованиях в Яндекс](https://habr.com/ru/companies/yandex/articles/449890/)
