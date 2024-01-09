@@ -6,6 +6,8 @@
 
 Можно применить: ClickHouse, NATS/RabbitMQ/Kafka, Hasura/GraphQL, GoHugo/NextJS/Flutter!
 
+Для вдохновения: https://fluttergems.dev/
+
 ---
 
 Звёздочки можно подключить:
