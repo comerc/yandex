@@ -275,5 +275,5 @@
 // в чем разница между pipeline и builder? Паттерн "Строитель" скрывает объект до тех пор, пока он не построен до конца (т.е. можно сказать, что builder - это pipeline за закрытыми дверями; хотя оба паттерна имеют дело с последовательностью шагов, они используются в разных сценариях и служат разным целям).
 // fmt.Scanln() - is similar to Scan, but stops scanning at a newline and after the final item there must be a newline or EOF.
 // path := `C:\Users\temp\test.txt` - сырые строки (raw strings) заключаются в обратные кавычки, т.е. экранирование не требуется.
-// var _ sql.Scanner = (*Time)(nil) - способ задать компилятору требование реализовать методы интерфейса sql.Scanner
+// var _ sql.Scanner = (*Time)(nil) - способ задать компилятору требование реализовать методы интерфейса sql.Scanner (Compile time checks to ensure your type satisfies an interface)[https://medium.com/@matryer/golang-tip-compile-time-checks-to-ensure-your-type-satisfies-an-interface-c167afed3aae]
 ```
