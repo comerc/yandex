@@ -33,6 +33,7 @@
 - [Туториал по дженерикам в Go](https://kovardin.ru/articles/go/generics/)
 - [DataDog/go-profiler-notes](https://github.com/DataDog/go-profiler-notes)
 - [Go Developer Survey 2021 Results](https://go.dev/blog/survey2021-results)
+- [Лекции для мидлов в OZON](https://www.youtube.com/@go_developer/videos)
 
 ## Code Style
 
