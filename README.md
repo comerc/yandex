@@ -65,6 +65,8 @@
 - [Проблемы функции Golang init](https://habr.com/ru/articles/771858/)
 - [Методические рекомендации по написанию Go кода от Uber](https://github.com/sau00/uber-go-guide-ru/blob/master/style.md)
 - [Создание атомарных коммитов в Git](https://habr.com/ru/articles/781794/)
+- [«Программист-прагматик. Путь от подмастерья к мастеру»: коротко о главном (часть первая)](https://habr.com/ru/companies/productivity_inside/articles/348116/)
+- [«Программист-прагматик. Путь от подмастерья к мастеру»: коротко о главном (часть вторая)](https://habr.com/ru/companies/productivity_inside/articles/348932/)
 
 ## Channel Axioms
 
