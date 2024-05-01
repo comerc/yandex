@@ -2,62 +2,55 @@ package main
 
 import (
 	"fmt"
-	"time"
-
-	"github.com/comerc/yandex/article"
+	"strconv"
+	"strings"
 )
 
-func main() {
-	var start time.Time
-	var elapsed time.Duration
-	var count int
-
-	J := "abc"
-	S := "aabbccd"
-
-	start = time.Now()
-	count = article.GetIntersectionCount1(J, S)
-	elapsed = time.Since(start)
-	fmt.Printf("article.GetIntersectionCount1 O(n+m): %d, time: %s\n", count, elapsed)
-
-	start = time.Now()
-	count = article.GetIntersectionCount2(J, S)
-	elapsed = time.Since(start)
-	fmt.Printf("article.GetIntersectionCount2 O(n*m): %d, time: %s\n", count, elapsed)
-
-	start = time.Now()
-	count = article.GetIntersectionCount3(J, S)
-	elapsed = time.Since(start)
-	fmt.Printf("article.GetIntersectionCount3 O(n^2): %d, time: %s\n", count, elapsed)
-
-	start = time.Now()
-	count = article.GetIntersectionCount4(J, S)
-	elapsed = time.Since(start)
-	fmt.Printf("article.GetIntersectionCount4 O(m*log(n)): %d, time: %s\n", count, elapsed)
-
-	arr := []int{1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1}
-
-	start = time.Now()
-	count = article.FindLongestSequence1(arr)
-	elapsed = time.Since(start)
-	fmt.Printf("article.FindLongestSequence1: %d, time: %s\n", count, elapsed)
-
-	start = time.Now()
-	count = article.FindLongestSequence2(arr)
-	elapsed = time.Since(start)
-	fmt.Printf("article.FindLongestSequence2: %d, time: %s\n", count, elapsed)
-
-	arr32 := []int32{1, 2, 2, 3, 4, 4, 4, 5, 5, 6}
-	fmt.Printf("article.RemoveDuplicates1: %v\n", article.RemoveDuplicates1(arr32))
-	fmt.Printf("article.RemoveDuplicates2: %v\n", article.RemoveDuplicates2(arr32))
-
-	fmt.Printf("article.GenerateParenthesis: %v\n", article.GenerateParenthesis(3))
-
-	fmt.Printf("article.CompareStrings1: %v\n", article.CompareStrings1("hello", "ollhe"))
-	fmt.Printf("article.CompareStrings2: %v\n", article.CompareStrings2("hello", "ollhe"))
-
-	arrays := [][]int{{3, 5, 7}, {0, 6}, {0, 6, 28}}
-	fmt.Printf("article.MergeArrays1: %v\n", article.MergeArrays1(arrays)) // [0 0 3 5 6 6 7 28]
-	fmt.Printf("article.MergeArrays2: %v\n", article.MergeArrays2(arrays)) // [0 0 3 5 6 6 7 28]
-	fmt.Printf("article.MergeArrays3: %v\n", article.MergeArrays3(arrays)) // [0 0 3 5 6 6 7 28]
+func convStrToInt(v string) int {
+	num, err := strconv.Atoi(v)
+	if err != nil {
+		panic(err)
+	}
+	return num
 }
+
+func fn(predicted, actual string) int {
+	if predicted == actual {
+		return 2
+	}
+
+	predictedScores := strings.Split(predicted, ":")
+	actualScores := strings.Split(actual, ":")
+
+	predictedHome := convStrToInt(predictedScores[0])
+	predictedAway := convStrToInt(predictedScores[1])
+
+	actualHome := convStrToInt(actualScores[0])
+	actualAway := convStrToInt(actualScores[1])
+
+	if (predictedHome > predictedAway && actualHome > actualAway) ||
+		(predictedHome < predictedAway && actualHome < actualAway) ||
+		(predictedHome == predictedAway && actualHome == actualAway) {
+		return 1
+	}
+
+	return 0
+}
+
+func main() {
+	fmt.Println(fn("2:3", "2:3") == 2) // если полностью угадал
+	fmt.Println(fn("2:1", "2:0") == 1) // хозяева
+	fmt.Println(fn("1:2", "0:2") == 1) // гости
+	fmt.Println(fn("2:2", "1:1") == 1) // ничья
+	fmt.Println(fn("2:3", "3:2") == 0) // не угадал
+}
+
+// Представь, что ты работаешь в букмекерской конторе программистом
+// и тебя попросили написать функцию, которая на вход принимает два футбольных счета
+// - тот который загадал клиент когда делал ставку и реальный результат футбольного матча
+// (то как сыграли команды на самом деле). На выходе нужно получить:
+// 2 - если клиент полностью угадал счет
+// 1 - если клиент угадал победившую команду (в том числе ничью)
+// 0 - если не угадал ничего
+// Счет задается строкой вида “2:3”.
+// Первое число называется счет хозяев, второе - счет гостей.
