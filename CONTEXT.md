@@ -4,10 +4,10 @@
 
 ### Зачем контекст
 
-- Получение дедлайна
-- Синхронизация при помощи каналов
-- Получение причины завершения
-- Хранение произвольных данных
+- Получение дедлайна - Deadline
+- Синхронизация при помощи каналов - Done
+- Получение причины завершения - Err
+- Хранение произвольных данных - Value
 
 ### Интерфейс
 
@@ -17,10 +17,44 @@
 //
 // Context's methods may be called by multiple goroutines simultaneously.
 type Context interface {
+	// Deadline возвращает время, когда работа, выполняемая на основе этого контекста, должна быть отменена. Deadline возвращает ok==false, когда не установлено время ожидания. Последовательные вызовы Deadline возвращают одинаковые результаты.
+
 	// Deadline returns the time when work done on behalf of this context
 	// should be canceled. Deadline returns ok==false when no deadline is
 	// set. Successive calls to Deadline return the same results.
 	Deadline() (deadline time.Time, ok bool)
+
+	// Done возвращает канал, который закрывается, когда необходимо отменить работу,
+	// выполненную на основе этого контекста. Done может вернуть nil, если этот
+	// контекст никогда не может быть отменен. Последующие вызовы Done возвращают
+	// то же значение. Закрытие канала Done может произойти асинхронно, после
+	// вызова функции отмены.
+	//
+	// WithCancel организует закрытие канала Done при вызове функции отмены;
+	// WithDeadline организует закрытие канала Done при истечении срока
+	// действия; WithTimeout организует закрытие канала Done при истечении
+	// таймера.
+	//
+	// Done предоставляется для использования в операторах select:
+	//
+	//   // Stream генерирует значения с помощью DoSomething и отправляет их в
+	//   // out, пока DoSomething не вернет ошибку или ctx.Done не будет закрыт.
+	//   func Stream(ctx context.Context, out chan<- Value) error {
+	//   	for {
+	//   		v, err := DoSomething(ctx)
+	//   		if err != nil {
+	//   			return err
+	//   		}
+	//   		select {
+	//   		case <-ctx.Done():
+	//   			return ctx.Err()
+	//   		case out <- v:
+	//   		}
+	//   	}
+	//   }
+	//
+	// Смотрите https://blog.golang.org/pipelines для дополнительных примеров того,
+	// как использовать канал Done для отмены.
 
 	// Done returns a channel that's closed when work done on behalf of this
 	// context should be canceled. Done may return nil if this context can
