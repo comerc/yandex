@@ -1,17 +1,10 @@
 ```go
-// var o struct{} - инициализирует структуру o
-// var a [3]int - инициализирует массив a
-// var v []int - объявляет nil-слайс v
-// var m map[string]int - объявляет nil-карту m
-// var ch chan string - объявляет nil-канал ch
 // if i := 0; i == 0 {} - присваивание; условие
-// switch t := v.(type) - .(type) работает только внутри switch
-// fallthrough - переход в следующий case (без его проверки), или в default
-// a := [5]any{"1", 2, true}
+// a := [5]any{"1", 2, true} - кортеж (tuple)
 // l := t[:] - не меняет unsafe.Pointer
 // l := t[1:2:3] - третий член определяет ёмкость
 // cap() - для массивов, как алиас на len()
-// cap() - применим для слайсов и каналов
+// cap() - применим для слайсов и каналов (буферизированный канал имеет len & cap)
 // for i, ch := range s {} "go" - ch имеет тип rune, s имеет тип string (т.е. range итерирует строку рунами); но i возвращает не индекс руны, а начальный индекс руны в []byte(s)
 // for i, r := range []rune(s) {} - тогда i возвращает индекс руны; но сложность O(n), где n — количество байтов в строке
 // utf8.RuneCount / utf8.RuneCountInString - альтернатива `len([]rune(s))`
@@ -20,7 +13,7 @@
 // make(<-chan bool) / make(chan<- bool) - ответ на вопрос: зачем создавать каналы только для чтения / записи? и ещё: канал только на чтение невозможно закрыть!
 // j, ok := <-jobs - проверка, что канал закрыт
 // for t := range ticker.C {} - чтение из канала ticker.C
-// wg.Add(1) запускать в том же потоке, где и wg.Wait()
+// важно запускать wg.Add(1) в том же потоке (или родительском), где и wg.Wait()
 // time.Tick() - лучше не использовать, it "leaks"; вместо него NewTicker() + Stop()
 // myType(val) - приведение типа работает, если известен тип для val
 // val.(myType) - утверждение типа работает, если тип для val неопределён (т.е. interface{})
@@ -48,7 +41,7 @@
 // os.Exit(1) - игнорирует defer
 // цветные логи: https://github.com/GolangLessons/url-shortener/blob/c3987f66469a8d0769add18521adb9023520be95/internal/lib/logger/handlers/slogpretty/slogpretty.go
 // vegeta, wrk - для стресс-тестов
-// когда нужен сервер httpserver - https://github.com/evrone/go-clean-template/tree/master/pkg/httpserver
+// когда нужен готовый сервер httpserver - https://github.com/evrone/go-clean-template/tree/master/pkg/httpserver
 // allegro/bigcache - когда нужен просто кеш (рекомендации лучших собаководов из Avito)
 // go-playground/validator - правильный валидатор
 // func New(ctx context.Context, connectionString string, opts ...Option) (*Storage, error) - паттерн опций для конструктора в функциях
@@ -56,7 +49,7 @@
 // благодатное выключение - Graceful Shutdown
 // func New() или func NewSubscriber() для пакета subscriber ? нет, например: errors.New
 // signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM) - неправильно, signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM) - правильно. os.Interrupt == syscall.SIGINT
-// "божественный конфиг" - https://youtu.be/0Fhsgmz-Gig?list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN&t=906
+// "божественный конфиг" - https://youtu.be/0Fhsgmz-Gig?list=PLZvfMc-lVSSO2zhyyxQLFmio8NxvQqZoN&t=906 (тезис - "разделяй и властвуй")
 // ilyakaznacheev/cleanenv - yaml & env в одном флаконе + godotenv для чтения .env
 // если функция кидает панику, то у неё должен быть префикс Must*, например MustLoad()
 // TEST EXPLORER внутри VS Code
@@ -66,40 +59,43 @@
 // [Dependency Injection на примере Uber fx](https://www.youtube.com/watch?v=KRdrH9a98HQ)
 // [Learn Go with Tests - Dependency Injection](https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/dependency-injection)
 // внутри interface ненужно прописывать ключевое слово func
-// type Number interface { ~int | ~int8 } - тип для дженериков: func Fn[T Number](a T) {}; "~" нужна для наследников int, например: type MyInt int
-// er := errgroup.Group{}; eg.SetLimit(limit) - ещё один примитив синхронизации (golang.org/x/sync/errgroup)
+// er := errgroup.Group{}; eg.SetLimit(limit) - ещё один примитив синхронизации (golang.org/x/sync/errgroup) - кейс применения: если одна из горутин группы завершится с ошибкой, то остановятся все.
 // math.Pow() - возведение в степень
-// механизм эвакуации в map
-// RWMutex - читаем без блокировок на чтение, но с блокировкой на запись при чтении(!), или записи
-// map в Go не гарантирует порядок ключей, ES6 - гарантирует, а Dart - нет (hash map vs b-tree map); reflect.DeepEqual() при перестановке ключей-значений вернёт true для map, но false - для слайсов/массивов (т.к. там порядок членов гарантирован).
-// log.Fatal(http.ListenAndServe(":8080", httpserver.NewHandler())) - как вариант обработки ошибок
-// "божественный" main.go
-// string - это тоже структура и лежит в куче; при передаче аргументом, что копируется?
-// func (Bear) Speak() - можно не указывать "this" в рессивере при реализации метода структуры
+// for i := range n - можно выпонять инкремент по числу (начиная с 1.22)
+// механизм эвакуации в map (про бакеты и их переполнение)
+// RWMutex - читаем без блокировок на чтение, но с блокировкой на запись при чтении(!), или записи (но сильно дороже, чем просто Mutex - механизм блокировки примерно на 30%; имеет смысл, если преобладает чтение над записью, т.к. чтение легковесное)
+// map в Go не гарантирует порядок ключей (что даёт большую свободу разработчикам - никто не сможет этим воспользоваться), ES6 - гарантирует, а Dart - нет (hash map vs b-tree map); reflect.DeepEqual() при перестановке ключей-значений вернёт true для map, но false - для слайсов/массивов (т.к. там порядок членов гарантирован).
+// log.Fatal(http.ListenAndServe(":8080", httpserver.NewHandler())) - как вариант обработки ошибок, но профит сомнительный - мы же выходим из программы без стека ошибок (os.Exit)
+// "божественный" main.go - это прекрасно, каждый раз так делаю и всем советую
+// string - это тоже структура и лежит в куче; при передаче аргументом, что копируется? строка неизменяемая. структура из двух полей - ссылка на массив байтов и len (дешевле, чем слайс - нет третьего поля cap - 16 vs 24 байт)
+// func (Bear) Speak() - можно не указывать "this" в рессивере при реализации метода структуры (что полезно для псевдостатических методов)
 // Интерфейсы - способ, как сделать программу SOLIDной? (Dependency Inversion)
-// где лучше объявлять интерфейсы: где применяются или где реализуются?
+// где лучше объявлять интерфейсы: где применяются или где реализуются? (утиная типизация даёт больше свободы: для инхаус разработки выгодно все интерфейсы выделить в отдельном месте; а если реализуешь бизнес логику в гексагональной архитектуре, то лучше применять интерфейсы, как порты - т.е. на своей стороне) 
+// что не нравится в Go? имплементация методов интерфейса в отрыве от объявления интерфейса, т.е. отсутствует самодокументирование кода, как например в Dart: class MyClass implements MyInterface {} 
 // type (A struct {}; B struct {}) - типы можно объявлять группой
 // go run . | ts '%.Ss' - не работает с println(), только с fmt.Println()
 // gherkingen - для BDD
 // пакеты и папки - вместо пробелов применяется тире, а файлы - подчёркивания
 // go test - это интерпретатор, а значит реализуем функционал, подобный WallabyJS
-// что не нравится в Go? имплементация методов интерфейса в отрыве от объявления интерфейса, т.е. отсутствует самодокументирование кода, как например в Dart: class MyClass implements MyInterface {}
-// что не нравиться в go? импорт без алиасов (как было в TypeScript), таскание контекста первым аргументом в функциях, отсутствует интерполяция строк
+// что не нравится в Go? импорт без алиасов (как было в TypeScript)
+// что не нравится в Go? требуется явную передачу контекста аргументом в функциях 
+// что не нравится в Go? отсутствует интерполяция строк
 // что не нравится в Go? Горутина — это такой же ресурс, как и любой другой, который должен быть закрыт для освобождения памяти или других ресурсов. При этом нет какого-либо идеоматичного решения, типа как defer для освобождения ресурсов.
-// try MyClass { lock sync.Mutex } - ненужно инициализировать, тут работает "ленивая инициализация"
-// arr := [...]int{5: 0} - что лежит в arr?
+// type MyClass struct { lock sync.Mutex } - ненужно инициализировать lock, тут работает "ленивая инициализация"
+// v := [...]int{5: 0} - что лежит в v?
 // break внутри case в select / switch - выйдут из области видимости select / switch (а не прервут for)
 // повторить Go Cuncurrency Patterns https://github.com/Konstantin8105/Go-pipelines
 // повторить Go Cuncurrency Patterns https://habr.com/ru/companies/otus/articles/722880/
-// вкурить: quicksort, mergesort, heapsort, сортировка вставками и пузырковая сортировка
-// type Counter struct { data  chan int } - когда объявляем канал, не обозначить буферизированный он, или нет (т.к. буферезация - часть инстанса)
-// type MyType struct { k1 int, k2 int } - можно инициализировать не все именованные поля, например: v := MyType{k1:0}; v := MyType{k2:0}
+// pipe in GoLang like Elixir https://devevangelista.medium.com/functional-programming-in-go-an-adventure-with-gofn-and-pipe-de42b3a76449
+// - вкурить: quicksort, mergesort, heapsort, сортировка вставками и пузырковая сортировка
+// type Counter struct { data chan int } (или var data chan int) - когда объявляем канал, не обозначить буферизированный он, или нет (т.к. буферезация - часть инстанса)
+// type MyType struct { k1 int; k2 int } - можно инициализировать не все именованные поля, например: v := MyType{k1:123}; v := MyType{k2:123}
 // for range done {} вместо <-done
-// научиться готовить новый пакет slices (v1.21)
-// как получить доступ на внутренний массив слайса? *(*[3]int)(unsafe.Pointer(&a[0]))
-// [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf) [Как не ошибиться с конкурентностью в Go](https://www.youtube.com/watch?v=4U3EaVufuW4)
-// runtime.Gosched() - команда шедулеру для вытеснения (preemptible) текущей горутины
-// interval := 0 * time.Second - идиома?
+// - научиться готовить новый пакет slices (v1.21)
+// как получить доступ на внутренний массив слайса? a := []int{1,2,3}; *(*[3]int)(unsafe.Pointer(&a[0]))
+// - [Go в Domain Driven Design](https://youtu.be/JcsKI7QyDrs)
+// - [Understanding Real-World Concurrency Bugs in Go](https://songlh.github.io/paper/go-study.pdf) [Как не ошибиться с конкурентностью в Go](https://www.youtube.com/watch?v=4U3EaVufuW4)
+// interval := 0 * time.Second - распространённая идиома для инициализации переменной типа time.Duration с нулевым интервалом времени
 // GetWorkDir() - ex := os.Executable() >> dir := filepath.Dir(ex) >> strings.Contains(dir, "go-build") - как способ узнать: go build / go run
 // time.AfterFunc - возможность вызвать callback
 // go увеличивает capacity только при append, но не на обрезаниях
@@ -107,7 +103,7 @@
 // for n := range ch {} - классическая ошибка - забыть закрыть канал, тогда будет блокировка типа <-done без пары записи в канал
 // префикс must обычно используется в функциях, которые могут вызвать панику
 // для модульных/интеграционных-тестов package не менять (иначе, только ради тестов открываю все внутренности в API модуля - это неправильно, только добавляет когнитивную нагрузку в Developer Experience), а для приёмочных выносить в отдельный package с суффиксом _test, что заставляет определить API модуля.
-// io.Discard - заглушка для io.Writer
+// io.Discard - заглушка для io.Writer (например, для ускорения тестов)
 // var _ MyInterface = (*MyStruct)(nil) - как с помощью типизированного nil можно проверить, что тип структуры реализует интерфейс, не создавая инстанс этой структуры
 // [Compile-time Dependency Injection for Go](https://github.com/google/wire)
 // [Fx is a dependency injection system for Go](https://github.com/uber-go/fx)
@@ -116,18 +112,19 @@
 // https://github.com/uber-go/config
 // https://github.com/go-telegram-bot-api/telegram-bot-api
 // вызов r.Context() внутри обработчика для http.NewServeMux()
-// sync.TryLock
-// slices.Clip - имеет смысл пробовать после 10Мб https://www.youtube.com/watch?v=G-lhh_1XNcI
+// sync.TryLock (начиная с 1.18)
+// slices.Clip (начиная с 1.21) - уменьшает capacity слайса до его текущей длины - имеет смысл пробовать после 10Мб https://www.youtube.com/watch?v=G-lhh_1XNcI
 // type parameters VS generics - зачем два термина? Таким образом, “type parameters” и “generics” относятся к различным аспектам одной и той же функциональности. “Generics” относится к общей концепции написания кода, который может работать с различными типами, в то время как “type parameters” относится к конкретному механизму, используемому для реализации этой функциональности.
-// `func F[T ~int](i T) {}` - approximation element, допускает `int` и `type MyInt int` (требуемый базовый тип)
-// как запомнить Itoa & Atoi из пакета strconv: i_to_a & a_to_i
-// type M[T any] []T - дженерик для слайса, определяемый параметром типа
+// `func F[T ~int](i T) {}` - approximation element (добавление тильды), допускает `int` и `type MyInt int` (требуемый базовый тип)
+// как запомнить Itoa & Atoi из пакета strconv: (Integer to ASCII) & (ASCII to Integer)
+// как озвучить type M[T any] []T - дженерик для слайса, определяемый параметром типа
 // почему параметры типа в Go обозначают в квадратных скобочках, а не в треугольных, как в других языках?
-// А можно сказать, что "approximation element" для параметров типа в дженериках - это LSP из SOLID?
-// x, y = "1", 2 - называется "присваивание кортежу"
+// А можно сказать, что "approximation element" для параметров типа в дженериках - это LSP из SOLID? Нет.
+// x, y = "1", 2 - называется "присваивание кортежу" в Python, но в GoLang это "множественное присваивание"
 // UTF-8 - принятая кодировка в Go (авторы Ken Thompson и Rob Pike), которая описывает рунами символы из unicode.org, где каждая руна может иметь разную длину от одного до четырех байтов, в отличии от кодировки UTF-32 (фиксированный размер int32), и UTF-16 - это кодировка фиксированной длины, которая использует два или четыре байта. но `rune // alias for int32`
 // генератор констант iota
 // нетипизированные константы
+*****
 // type MyInt int - "именованный тип", может применяться "анономным полем" через механизм "embedded": type MyObj struct { MyInt }; println(MyObj{1}.MyInt)
 // type Event struct {ID int; time.Time}; event := Event{ID: 1234, Time: time.Now()} - инициализация "анонимного поля"
 // type MyType struct {}; func (a *MyType) Try() { if a == nil { println("nil") } }; var a *MyType; a.Try(); - подобие статического метода класса
@@ -140,9 +137,10 @@
 // type Interface interface - "базовый" интерфейс модуля называется Interface (например: sort.Interface)
 // rw := w.(io.ReadWriter) - panic: interface conversion; rw, ok := w.(io.ReadWriter) - ok == false
 // io.WriteString - это рекомендованный способ записи строки в io.Writer
+// switch t := v.(type) - .(type) работает только внутри "type switch"
+// fallthrough - "проваливаться" - переход в следующий case (без его проверки), или в default
 // switch x := x.(type) { case nil: return "NULL" } - при выборе типа можно проверять на nil; в выборе типа применение fallthrough не разрешено
 // switch без условия полезен тем, что может использоваться для проверки нескольких условий
-// fallthrough внутри switch "проваливает" выполнение в следующий блок case без проверки условия в этом case
 // switch без условий эквивалентен switch true, т.е. switch { case true: println("OK") }
 // при чтении для канала можно использовать `value, ok := <-ch`
 // https://github.com/mcfly722/context
@@ -276,4 +274,6 @@
 // fmt.Scanln() - is similar to Scan, but stops scanning at a newline and after the final item there must be a newline or EOF.
 // path := `C:\Users\temp\test.txt` - сырые строки (raw strings) заключаются в обратные кавычки, т.е. экранирование не требуется.
 // var _ sql.Scanner = (*Time)(nil) - способ задать компилятору требование реализовать методы интерфейса sql.Scanner (Compile time checks to ensure your type satisfies an interface)[https://medium.com/@matryer/golang-tip-compile-time-checks-to-ensure-your-type-satisfies-an-interface-c167afed3aae]
+// соглашение: функция-конструктор не может принимать контекст и возвращать err, потому для testcontainers-go запускаю контейнер в фунции с префиксом "run", т.е. runContainer(ctx context.Context) (*tc.PostgresContainer, error)
+// Если тебе "что-то" мешает написать тест, значит это "что-то" не на своём месте.
 ```
