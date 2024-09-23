@@ -96,3 +96,36 @@ func main() {
 	}
 }
 ```
+
+---
+
+Вот оно, щастье!
+
+```go
+package main
+
+import (
+  "fmt"
+)
+
+type MyTest struct {
+  items []any
+}
+
+func main() {
+  tests := []MyTest{
+    {
+      items: []any{1, 2, 3},
+    },
+    {
+      items: []any{"1", "2", "3"},
+    },
+  }
+
+  for _, test := range tests {
+    for _, item := range test.items {
+      fmt.Printf("%#v", item)
+    }
+  }
+}
+```
