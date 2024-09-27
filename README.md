@@ -67,6 +67,8 @@
 - [Создание атомарных коммитов в Git](https://habr.com/ru/articles/781794/)
 - [«Программист-прагматик. Путь от подмастерья к мастеру»: коротко о главном (часть первая)](https://habr.com/ru/companies/productivity_inside/articles/348116/)
 - [«Программист-прагматик. Путь от подмастерья к мастеру»: коротко о главном (часть вторая)](https://habr.com/ru/companies/productivity_inside/articles/348932/)
+- [Golang design: Generics vs Interfaces, How It Really Works Under the Hood](https://blog.stackademic.com/golang-design-generics-vs-interfaces-how-it-really-works-under-the-hood-c1e5057a7ae6?gi=fa683ee6f9d1)
+- [Go Style Decisions](https://google.github.io/styleguide/go/decisions.html)
 
 ## Channel Axioms
 
