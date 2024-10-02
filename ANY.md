@@ -129,3 +129,28 @@ func main() {
   }
 }
 ```
+
+---
+
+Ещё один хак для any:
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	Do([]string{"test"})
+}
+
+func Do[T any](data T) {
+	switch v := any(data).(type) {
+	case []string:
+		fmt.Println("this is []string", v)
+	case []int:
+		fmt.Println("this is []int", v)
+	default:
+		fmt.Printf("this is default %T", v)
+	}
+}
+```
