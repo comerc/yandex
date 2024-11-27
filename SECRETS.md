@@ -279,4 +279,7 @@
 // если у тебя в конструктор проброшен контекст, то что-то идет не так
 // fmt.Println("Процесс с PID", pid, "успешно завершен.") - можно просто вставлять переменные без форматирования строки
 // accept interfaces, return concrete types
+// fuzzing-тесты https://habr.com/ru/companies/selectel/articles/709248/
+// testable examples in Go https://go.dev/blog/examples
+// но я не нашёл применения для examples, [go-snap](https://github.com/gkampitakis/go-snaps) круче.
 ```
