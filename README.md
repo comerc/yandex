@@ -51,7 +51,11 @@
 - [Go Concurrency Patterns](https://github.com/lotusirous/go-concurrency-patterns)
 - [Go Concurrency Exercises](https://github.com/comerc/go-concurrency-exercises)
 - [Как не наступать на грабли в Go](https://habr.com/ru/articles/325468/)
-- Web Frameworks: [Revel](https://github.com/revel/revel) ![](https://img.shields.io/github/stars/revel/revel?style=social) 12.2011 > [Gin](https://github.com/gin-gonic/gin) ![](https://img.shields.io/github/stars/gin-gonic/gin?style=social) 06.2014 > [Echo](https://github.com/labstack/echo) ![](https://img.shields.io/github/stars/labstack/echo?style=social) 03.2015 > [Fiber](https://github.com/gofiber/fiber) ![](https://img.shields.io/github/stars/gofiber/fiber?style=social) 01.2020
+- Web Frameworks: 
+	- [Revel](https://github.com/revel/revel) ![](https://img.shields.io/github/stars/revel/revel?style=social) 12.2011 
+	- [Gin](https://github.com/gin-gonic/gin) ![](https://img.shields.io/github/stars/gin-gonic/gin?style=social) 06.2014 
+	- [Echo](https://github.com/labstack/echo) ![](https://img.shields.io/github/stars/labstack/echo?style=social) 03.2015 
+	- [Fiber](https://github.com/gofiber/fiber) ![](https://img.shields.io/github/stars/gofiber/fiber?style=social) 01.2020
 - [Тёмные века программного обеспечения](https://github.com/comerc/software_dark_ages/blob/main/TEXT.md)
 - [Событийное моделирование традиционных систем](https://github.com/comerc/event_modeling_traditional_systems/blob/main/TEXT.md)
 - [Event Modeling Cheat Sheet](https://eventmodeling.org/posts/event-modeling-cheatsheet/)
@@ -114,6 +118,10 @@ DI - это конкретная форма IoC, где зависимости �
 
 Не путать с **Dependency Inversion Principle** - это принцип SOLID в объектно-ориентированном программировании, который помогает уменьшить связанность в коде. Он гласит: "Модули верхнего уровня не должны зависеть от модулей нижнего уровня. Оба должны зависеть от абстракций. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций".
 
+## coupling-vs-cohesion
+
+![](./assets/coupling-vs-cohesion.jpg)
+
 ## Упражнение на "Communicating sequential processes (CSP)" / "Actor Model"
 
 ![](./assets/two_models_of_communucations.png)
@@ -125,8 +133,7 @@ DI - это конкретная форма IoC, где зависимости �
 
 Условие: Без применения примитивов из пакета sync, исключительно используя канал для обеспечения потокобезопасной передачи/приёма данных.
 
-<details>
-	<summary>Решение</summary>
+### Решение
 
 ```go
 package main
@@ -175,8 +182,6 @@ func main() {
 	fmt.Println(<-counter)
 }
 ```
-
-</details>
 
 ## Буферизированный-небуферизированный канал
 
@@ -512,8 +517,7 @@ func getArray(a []int) []int {
 
 Видео: [Что нужно знать о слайсах в Go](https://www.youtube.com/watch?v=1vAIvqDo5LE)
 
-<details>
-	<summary>Больше практики по слайсам</summary>
+### Больше практики по слайсам
 
 ```go
 package main
@@ -617,10 +621,7 @@ func main() {
 
 ```
 
-</details>
-
-<details>
-	<summary>Как узнать, что два слайса используют один базовый массив?</summary>
+### Как узнать, что два слайса используют один базовый массив?
 
 ```go
 package main
@@ -661,8 +662,6 @@ func main() {
 	println(slicesShareMemory(c, e))
 }
 ```
-
-</details>
 
 ## Heap
 

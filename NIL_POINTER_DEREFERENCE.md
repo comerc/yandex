@@ -1,23 +1,31 @@
-код приведёт к ошибке, какой линтер может это предупредить? ChatGPT говорит:
+# Разименование nil-указателя
 
-> К сожалению, на данный момент нет линтера в Go, который мог бы предупредить об этой конкретной ошибке. Это связано с тем, что в Go nil может иметь тип, и проверка на nil не гарантирует отсутствие ошибки nil pointer dereference.
+Разименование nil-указателя вызывает немедленную остановку программы с panic.
 
 ```go
 package main
 
 import (
-  "bytes"
-  "io"
+	"bytes"
+	"io"
 )
 
 func fn(out io.Writer) {
-  if out != nil {
-    out.Write([]byte("OK\n"))
-  }
+	if out != nil {
+		out.Write([]byte("OK\n"))
+	}
 }
 
 func main() {
-  var buf *bytes.Buffer // вместо io.Writer
-  fn(buf)
+	// case 1: nil-указатель как аргумент интерфейса
+	var buf *bytes.Buffer = nil
+	fn(buf) // panic
+
+	// case 2: прямое разименование nil-указателя
+	var a *int
+	b := *a // panic
+	println(b)
 }
 ```
+
+> nilaway помогает выявлять второй случай, но не первый.
