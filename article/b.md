@@ -1,3 +1,4 @@
+```go
 package article
 
 func FindLongestSequence1(arr []int) int {
@@ -26,3 +27,4 @@ func FindLongestSequence2(arr []int) int {
 	}
 	return maxLen
 }
+```

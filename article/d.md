@@ -1,3 +1,4 @@
+```go
 package article
 
 // Функция generateParenthesis использует рекурсивный алгоритм с возвратом (backtracking),
@@ -32,3 +33,4 @@ func GenerateParenthesis(n int) []string {
 	backtrack("", 0, 0)
 	return result
 }
+```

@@ -1,3 +1,4 @@
+```go
 package article
 
 import (
@@ -75,3 +76,4 @@ func CompareStrings2(s1, s2 string) int {
 		return 0
 	}
 }
+```

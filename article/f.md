@@ -1,3 +1,4 @@
+```go
 package article
 
 import (
@@ -149,3 +150,4 @@ func heapifyUp(heap []int, i int) {
 		heapifyUp(heap, parent)
 	}
 }
+```

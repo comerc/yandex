@@ -1,3 +1,4 @@
+```go
 package article
 
 func RemoveDuplicates1(arr []int32) []int32 {
@@ -33,3 +34,4 @@ func RemoveDuplicates2(arr []int32) []int32 {
 	}
 	return arr[:uniqueIndex]
 }
+```
