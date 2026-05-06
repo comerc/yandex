@@ -284,4 +284,8 @@
 // но я не нашёл применения для examples, [go-snap](https://github.com/gkampitakis/go-snaps) круче.
 // GoLang поддерживает множественное встраивание
 // sync.Cond & sync.Broadcast для организации широковещательных каналов
+// --- новые секреты, которые не вошли в Shorts
+// defer mx unlock - антипаттерн, возможны утечки
+// чем плох cgo для многопоточки - блокирует тред
+// nice для exec.CommandContext()
 ```
